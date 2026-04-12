@@ -3,198 +3,261 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNDRY Group | منظومة المستقبل الرقمي</title>
+    <title>SNDRY Group Gateway | بوابة منظومة المستقبل</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
     <style>
+        /* === الإعدادات الأساسية والألوان الفخمة === */
         :root {
-            --bg-body: #f8fafc;
-            --primary-glow: #ff7e67;
-            --accent-glow: #38bdf8;
-            --card-bg: rgba(255, 255, 255, 0.7);
+            --bg-dark: #0f172a; /* كحلي غامق جداً للفخامة */
+            --primary-glow: #ff7e67; /* البرتقالي الخاص بكم */
+            --accent-glow: #38bdf8;  /* الأزرق السماوي */
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --card-glass: rgba(255, 255, 255, 0.03); /* شفافية زجاجية داكنة */
             --font-main: 'Cairo', sans-serif;
         }
 
+        * { box-sizing: border-box; margin: 0; padding: 0; outline: none; }
+
         body {
             font-family: var(--font-main);
-            background: var(--bg-body);
-            margin: 0;
-            overflow: hidden; /* لمنع التمرير وضمان فخامة العرض */
+            background: var(--bg-dark);
+            color: var(--text-main);
             height: 100vh;
+            overflow: hidden; /* تجربة شاشة كاملة */
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* خلفية ديناميكية متحركة */
-        .mesh-bg {
+        /* === 1. طبقة الخلفية المتحركة (Mesh Gradient & Noise) === */
+        .bg-layer {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1;
-            background-color: #f8fafc;
+            z-index: -2;
+            background-color: var(--bg-dark);
             background-image: 
-                radial-gradient(at 0% 0%, rgba(255,126,103,0.15) 0px, transparent 50%),
-                radial-gradient(at 100% 100%, rgba(56,189,248,0.15) 0px, transparent 50%);
-            animation: pulseBg 10s ease-in-out infinite alternate;
+                radial-gradient(at 10% 10%, rgba(255,126,103,0.1) 0px, transparent 50%),
+                radial-gradient(at 90% 90%, rgba(56,189,248,0.1) 0px, transparent 50%);
+            animation: meshPulse 15s ease-in-out infinite alternate;
         }
 
-        @keyframes pulseBg {
-            0% { opacity: 0.8; }
-            100% { opacity: 1; }
+        /* تأثير الـ Noise لإعطاء ملمس فخم */
+        .bg-layer::after {
+            content: '';
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"%3%3Cfilter id="noiseFilter"%3%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3%3C/filter%3%3%3Crect width="100%" height="100%" filter="url(%23noiseFilter)"/%3%3C/svg%3%3E');
+            opacity: 0.03; /* نويز خفيف جداً */
+            pointer-events: none;
         }
 
-        .container {
+        @keyframes meshPulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
+        }
+
+        /* === 2. زر تبديل اللغة الفخم === */
+        .lang-switcher {
+            position: fixed; top: 30px; left: 30px; /* يسار لأن الـ Dir RTL */
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+            transition: 0.3s ease;
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .lang-switcher:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--accent-glow);
+        }
+
+        /* === 3. الحاوية الرئيسية والترتيب === */
+        .gateway-container {
             width: 90%;
-            max-width: 1200px;
+            max-width: 1300px;
             text-align: center;
+            z-index: 10;
         }
 
+        /* الشعار الرئيسي مع حركة دخول ونبض */
         .main-logo {
-            width: 180px;
-            margin-bottom: 50px;
-            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.1));
-            animation: fadeInDown 1s ease-out;
+            width: 220px;
+            margin-bottom: 60px;
+            filter: drop-shadow(0 0 15px rgba(255,255,255,0.1));
+            animation: logoIntro 1.5s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
-        .grid-platforms {
+        @keyframes logoIntro {
+            from { opacity: 0; transform: translateY(-30px) scale(0.9); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* === 4. شبكة المنصات وتداخل الطبقات (الكروت) === */
+        .platform-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 30px;
+            gap: 40px;
+            perspective: 2000px; /* مهم لتأثير الـ 3D الهوفر */
         }
 
         .platform-card {
-            background: var(--card-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 30px;
-            padding: 40px 20px;
+            background: var(--card-glass);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 40px;
+            padding: 60px 30px;
             text-decoration: none;
-            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            display: flex; flex-direction: column; align-items: center;
+            /* أنيمشن ظهور تدريجي من الأسفل */
+            opacity: 0; transform: translateY(50px);
+            animation: cardFadeIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
-        .platform-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-            border-color: var(--primary-glow);
-        }
+        /* تأثير الظهور المتتابع */
+        .platform-card:nth-child(1) { animation-delay: 0.2s; }
+        .platform-card:nth-child(2) { animation-delay: 0.4s; }
+        .platform-card:nth-child(3) { animation-delay: 0.6s; }
 
-        .platform-card img {
-            width: 100px;
-            height: 100px;
-            object-fit: contain;
-            margin-bottom: 20px;
-            transition: transform 0.5s ease;
-        }
-
-        .platform-card:hover img {
-            transform: rotate(5deg) scale(1.1);
-        }
-
-        .platform-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #1e293b;
-            margin-bottom: 10px;
-        }
-
-        .platform-desc {
-            font-size: 0.9rem;
-            color: #64748b;
-            line-height: 1.6;
-        }
-
-        /* تأثير الـ Glow عند الهوفر */
-        .platform-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,126,103,0.1) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s;
-        }
-
-        .platform-card:hover::before {
-            opacity: 1;
-        }
-
-        /* لغات */
-        .lang-switcher {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            background: white;
-            padding: 8px 20px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: 0.3s;
-        }
-
-        /* الأنيمشن */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
+        @keyframes cardFadeIn {
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @media (max-width: 768px) {
-            .grid-platforms { grid-template-columns: 1fr; }
-            body { overflow-y: auto; padding: 50px 0; }
+        /* === تأثيرات الهوفر الفخمة (السر هنا) === */
+        .platform-card:hover {
+            transform: translateY(-20px) rotateX(5deg) rotateY(-2deg); /* حركة 3D خفيفة */
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3), 0 0 100px rgba(56,189,248,0.1);
+        }
+
+        /* طبقة الـ Glow الديناميكي خلف الكارت عند الهوفر */
+        .platform-card::after {
+            content: '';
+            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(56,189,248,0.05) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.6s ease;
+            pointer-events: none;
+        }
+
+        .platform-card:hover::after { opacity: 1; }
+
+        /* محتوى الكارت */
+        .platform-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            margin-bottom: 30px;
+            transition: 0.6s ease;
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2));
+        }
+
+        .platform-card:hover img {
+            transform: scale(1.1) translateY(-10px);
+        }
+
+        .platform-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+
+        .platform-desc {
+            font-size: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            transition: 0.3s;
+        }
+
+        .platform-card:hover .platform-desc {
+            color: var(--text-main);
+        }
+
+        /* زر الدخول الوهمي (يظهر عند الهوفر) */
+        .enter-btn {
+            margin-top: auto;
+            color: var(--accent-glow);
+            font-weight: 700;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: 0.4s ease;
+        }
+
+        .platform-card:hover .enter-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === 5. التجاوب مع الشاشات === */
+        @media (max-width: 992px) {
+            .platform-grid { grid-template-columns: 1fr; gap: 20px; }
+            body { overflow-y: auto; padding: 60px 0; }
+            .platform-card { padding: 40px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="mesh-bg"></div>
+    <div class="bg-layer"></div>
 
     <div class="lang-switcher" onclick="toggleLang()">
+        <i class="bi bi-translate"></i>
         <span id="lang-text">English</span>
     </div>
 
-    <div class="container">
-        <img src="images/main.png" alt="SNDRY" class="main-logo">
+    <div class="gateway-container">
+        <img src="images/main.png" alt="SNDRY Group" class="main-logo">
 
-        <div class="grid-platforms">
-            <a href="https://erp.sndry.net" class="platform-card">
-                <img src="images/erp.png" alt="ERP">
-                <div class="platform-title" data-en="ERP System" data-ar="نظام ERP">نظام ERP</div>
-                <div class="platform-desc" data-en="Integrated management for your business assets." data-ar="إدارة متكاملة لأصول أعمالك ومواردك.">إدارة متكاملة لأصول أعمالك ومواردك.</div>
+        <div class="platform-grid">
+            
+            <a href="https://sami.sndry.net" class="platform-card">
+                <img src="images/sami.png" alt="SAMI">
+                <div class="platform-title" data-en="SAMI Assistant" data-ar="مساعد سامي">مساعد سامي</div>
+                <div class="platform-desc" data-en="Your intelligent AI partner for digital marketing." data-ar="شريكك الذكي المدعوم بالذكاء الاصطناعي للتسويق الرقمي.">شريكك الذكي المدعوم بالذكاء الاصطناعي للتسويق الرقمي.</div>
+                <div class="enter-btn" data-en="Enter Platform" data-ar="دخول المنصة">دخول المنصة</div>
             </a>
 
             <a href="https://pos.sndry.net" class="platform-card">
                 <img src="images/pos.png" alt="POS">
                 <div class="platform-title" data-en="POS System" data-ar="نظام POS">نظام POS</div>
-                <div class="platform-desc" data-en="Point of sale solutions for retail and shops." data-ar="حلول نقاط البيع المتطورة للمتاجر والشركات.">حلول نقاط البيع المتطورة للمتاجر والشركات.</div>
+                <div class="platform-desc" data-en="Advanced point of sale solutions for modern retail." data-ar="حلول نقاط البيع المتقدمة لإدارة التجزئة العصرية.">حلول نقاط البيع المتقدمة لإدارة التجزئة العصرية.</div>
+                <div class="enter-btn" data-en="Enter Platform" data-ar="دخول المنصة">دخول المنصة</div>
             </a>
 
-            <a href="https://sami.sndry.net" class="platform-card">
-                <img src="images/sami.png" alt="SAMI">
-                <div class="platform-title" data-en="SAMI Assistant" data-ar="مساعد سامي">مساعد سامي</div>
-                <div class="platform-desc" data-en="Your intelligent AI marketing partner." data-ar="شريكك الذكي في التسويق وإدارة المحتوى.">شريكك الذكي في التسويق وإدارة المحتوى.</div>
+            <a href="https://erp.sndry.net" class="platform-card">
+                <img src="images/erp.png" alt="ERP">
+                <div class="platform-title" data-en="ERP System" data-ar="نظام ERP">نظام ERP</div>
+                <div class="platform-desc" data-en="Unified management of your business resources and operations." data-ar="الإدارة الموحدة لموارد وعمليات مؤسستك بشكل متكامل.">الإدارة الموحدة لموارد وعمليات مؤسستك بشكل متكامل.</div>
+                <div class="enter-btn" data-en="Enter Platform" data-ar="دخول المنصة">دخول المنصة</div>
             </a>
+            
         </div>
     </div>
 
     <script>
+        /* سكريبت تبديل اللغة الفوري */
         function toggleLang() {
             const body = document.body;
             const isAr = body.dir === 'rtl';
+            
+            // تبديل الاتجاه
             body.dir = isAr ? 'ltr' : 'rtl';
+            
+            // تبديل نص الزر
             document.getElementById('lang-text').innerText = isAr ? 'العربية' : 'English';
             
+            // تبديل نصوص العناصر
             document.querySelectorAll('[data-en]').forEach(el => {
                 el.innerText = isAr ? el.getAttribute('data-en') : el.getAttribute('data-ar');
             });
