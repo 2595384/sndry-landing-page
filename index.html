@@ -9,14 +9,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     
     <style>
-        /* === الإعدادات الأساسية والألوان الفخمة === */
+        /* === إعدادات الألوان الفخمة الفاتحة === */
         :root {
-            --bg-dark: #0f172a; /* كحلي غامق جداً للفخامة */
-            --primary-glow: #ff7e67; /* البرتقالي الخاص بكم */
+            --bg-body: #f0f4f8;     /* خلفية رمادية فاتحة جداً ومريحة */
+            --card-base: #ffffff;   /* لون الكارت الأساسي */
+            --primary-glow: #ff7e67; /* البرتقالي الخاص بكم للتمييز */
             --accent-glow: #38bdf8;  /* الأزرق السماوي */
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
-            --card-glass: rgba(255, 255, 255, 0.03); /* شفافية زجاجية داكنة */
+            --text-main: #1e293b;   /* كحلي غامق للنصوص الأساسية */
+            --text-muted: #64748b;  /* رمادي للنصوص الفرعية */
+            --shadow-light: rgba(255, 255, 255, 0.8);
+            --shadow-dark: rgba(160, 175, 192, 0.3); /* ظل ناعم جداً للبروز */
             --font-main: 'Cairo', sans-serif;
         }
 
@@ -24,145 +26,148 @@
 
         body {
             font-family: var(--font-main);
-            background: var(--bg-dark);
+            background: var(--bg-body);
             color: var(--text-main);
             height: 100vh;
-            overflow: hidden; /* تجربة شاشة كاملة */
+            overflow: hidden; /* تجربة شاشة كاملة دون تشتيت */
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* === 1. طبقة الخلفية المتحركة (Mesh Gradient & Noise) === */
+        /* === 1. طبقة الخلفية الغنية والناعمة (Dynamic Blurs) === */
         .bg-layer {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
             z-index: -2;
-            background-color: var(--bg-dark);
-            background-image: 
-                radial-gradient(at 10% 10%, rgba(255,126,103,0.1) 0px, transparent 50%),
-                radial-gradient(at 90% 90%, rgba(56,189,248,0.1) 0px, transparent 50%);
-            animation: meshPulse 15s ease-in-out infinite alternate;
+            overflow: hidden;
         }
 
-        /* تأثير الـ Noise لإعطاء ملمس فخم */
-        .bg-layer::after {
-            content: '';
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('data:image/svg+xml,%3Csvg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg"%3%3Cfilter id="noiseFilter"%3%3CfeTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/%3%3C/filter%3%3%3Crect width="100%" height="100%" filter="url(%23noiseFilter)"/%3%3C/svg%3%3E');
-            opacity: 0.03; /* نويز خفيف جداً */
-            pointer-events: none;
+        /* بقع ضوئية ناعمة متحركة تعطي عمق للخلفية */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.2;
+            animation: blobFloat 20s infinite alternate;
         }
 
-        @keyframes meshPulse {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.05); }
+        .blob-1 { top: -10%; left: -10%; width: 400px; height: 400px; background: var(--primary-glow); animation-delay: 0s; }
+        .blob-2 { bottom: -10%; right: -10%; width: 500px; height: 500px; background: var(--accent-glow); animation-delay: -5s; }
+
+        @keyframes blobFloat {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(50px, 50px) scale(1.1); }
         }
 
-        /* === 2. زر تبديل اللغة الفخم === */
+        /* === 2. زر تبديل اللغة الفخم (Soft Button) === */
         .lang-switcher {
             position: fixed; top: 30px; left: 30px; /* يسار لأن الـ Dir RTL */
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 10px 25px;
+            background: var(--card-base);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            padding: 12px 28px;
             border-radius: 50px;
             cursor: pointer;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(5px);
             z-index: 100;
-            transition: 0.3s ease;
-            display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s ease;
+            display: flex; align-items: center; gap: 10px;
+            /* تأثير البروز الناعم */
+            box-shadow: 5px 5px 10px var(--shadow-dark), -5px -5px 10px var(--shadow-light);
+            font-weight: 600;
         }
 
         .lang-switcher:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--accent-glow);
+            box-shadow: 2px 2px 5px var(--shadow-dark), -2px -2px 5px var(--shadow-light); /* إحساس بالضغط */
+            color: var(--primary-glow);
         }
 
         /* === 3. الحاوية الرئيسية والترتيب === */
         .gateway-container {
             width: 90%;
-            max-width: 1300px;
+            max-width: 1400px;
             text-align: center;
             z-index: 10;
         }
 
-        /* الشعار الرئيسي مع حركة دخول ونبض */
+        /* الشعار الرئيسي مع حركة دخول ناعمة (تأكد من وجود images/main.png) */
         .main-logo {
-            width: 220px;
-            margin-bottom: 60px;
-            filter: drop-shadow(0 0 15px rgba(255,255,255,0.1));
-            animation: logoIntro 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+            width: 200px;
+            margin-bottom: 70px;
+            filter: drop-shadow(0 5px 10px rgba(0,0,0,0.05));
+            animation: logoIntro 1s cubic-bezier(0.22, 1, 0.36, 1);
         }
 
         @keyframes logoIntro {
-            from { opacity: 0; transform: translateY(-30px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
-        /* === 4. شبكة المنصات وتداخل الطبقات (الكروت) === */
+        /* === 4. شبكة المنصات والكروت البارزة (The Claymorphism Cards) === */
         .platform-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            perspective: 2000px; /* مهم لتأثير الـ 3D الهوفر */
+            gap: 50px;
+            perspective: 1500px; /* لعمل حركات 3D عند الهوفر */
         }
 
         .platform-card {
-            background: var(--card-glass);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            background: var(--card-base);
+            /* أهم سطر: تأثير Claymorphism/Neumorphism (الظل المزدوج) */
+            box-shadow: 20px 20px 40px var(--shadow-dark), -20px -20px 40px var(--shadow-light);
             border-radius: 40px;
-            padding: 60px 30px;
+            padding: 70px 40px;
             text-decoration: none;
-            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
             position: relative;
             overflow: hidden;
             display: flex; flex-direction: column; align-items: center;
-            /* أنيمشن ظهور تدريجي من الأسفل */
-            opacity: 0; transform: translateY(50px);
-            animation: cardFadeIn 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+            border: 1px solid rgba(255, 255, 255, 0.2); /* حدود ناعمة جداً */
+            /* أنيمشن ظهور متتابع */
+            opacity: 0; transform: translateY(30px);
+            animation: cardFadeIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
         }
 
-        /* تأثير الظهور المتتابع */
-        .platform-card:nth-child(1) { animation-delay: 0.2s; }
-        .platform-card:nth-child(2) { animation-delay: 0.4s; }
-        .platform-card:nth-child(3) { animation-delay: 0.6s; }
+        .platform-card:nth-child(1) { animation-delay: 0.1s; }
+        .platform-card:nth-child(2) { animation-delay: 0.3s; }
+        .platform-card:nth-child(3) { animation-delay: 0.5s; }
 
         @keyframes cardFadeIn {
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* === تأثيرات الهوفر الفخمة (السر هنا) === */
+        /* === تأثيرات الهوفر الفخمة === */
         .platform-card:hover {
-            transform: translateY(-20px) rotateX(5deg) rotateY(-2deg); /* حركة 3D خفيفة */
-            background: rgba(255, 255, 255, 0.07);
-            border-color: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.3), 0 0 100px rgba(56,189,248,0.1);
+            /* حركة ثلاثية الأبعاد خفيفة تعطي إحساس بالملمس */
+            transform: translateY(-15px) rotateX(3deg) rotateY(-2deg);
+            /* الظل يصبح أعمق عند الارتفاع */
+            box-shadow: 30px 30px 60px var(--shadow-dark), -20px -20px 40px var(--shadow-light);
         }
 
-        /* طبقة الـ Glow الديناميكي خلف الكارت عند الهوفر */
+        /* طبقة الـ Glow الديناميكي عند الهوفر لإضافة "الفخامة" */
         .platform-card::after {
             content: '';
-            position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(56,189,248,0.05) 0%, transparent 70%);
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(56,189,248,0.03) 0%, transparent 70%);
             opacity: 0;
-            transition: opacity 0.6s ease;
-            pointer-events: none;
+            transition: opacity 0.5s ease;
         }
 
         .platform-card:hover::after { opacity: 1; }
 
         /* محتوى الكارت */
         .platform-card img {
-            width: 120px;
-            height: 120px;
+            width: 110px;
+            height: 110px;
             object-fit: contain;
-            margin-bottom: 30px;
-            transition: 0.6s ease;
-            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.2));
+            margin-bottom: 35px;
+            transition: transform 0.6s ease;
+            /* ظل ناعم أسفل الصورة لتبدو بارزة */
+            filter: drop-shadow(0 10px 10px rgba(0,0,0,0.05));
         }
 
         .platform-card:hover img {
-            transform: scale(1.1) translateY(-10px);
+            transform: scale(1.05) translateY(-5px);
         }
 
         .platform-title {
@@ -170,46 +175,56 @@
             font-weight: 800;
             color: var(--text-main);
             margin-bottom: 15px;
-            letter-spacing: -1px;
+            letter-spacing: -0.5px;
         }
 
         .platform-desc {
-            font-size: 1rem;
+            font-size: 0.95rem;
             color: var(--text-muted);
-            line-height: 1.6;
-            transition: 0.3s;
+            line-height: 1.7;
+            transition: color 0.3s;
         }
 
         .platform-card:hover .platform-desc {
             color: var(--text-main);
         }
 
-        /* زر الدخول الوهمي (يظهر عند الهوفر) */
+        /* زر الدخول الوهمي (Soft Button Inside) يظهر عند الهوفر */
         .enter-btn {
-            margin-top: auto;
-            color: var(--accent-glow);
+            margin-top: 30px;
+            background: var(--bg-body);
+            color: var(--text-muted);
+            padding: 10px 25px;
+            border-radius: 50px;
             font-weight: 700;
+            font-size: 0.85rem;
             opacity: 0;
             transform: translateY(10px);
-            transition: 0.4s ease;
+            transition: all 0.4s ease;
+            box-shadow: inset 2px 2px 5px var(--shadow-dark), inset -2px -2px 5px var(--shadow-light); /* ظل داخلي */
         }
 
         .platform-card:hover .enter-btn {
             opacity: 1;
             transform: translateY(0);
+            color: var(--accent-glow);
+            box-shadow: inset 1px 1px 3px var(--shadow-dark), inset -1px -1px 3px var(--shadow-light);
         }
 
-        /* === 5. التجاوب مع الشاشات === */
+        /* === 5. التجاوب مع الشاشات (Mobile) === */
         @media (max-width: 992px) {
-            .platform-grid { grid-template-columns: 1fr; gap: 20px; }
-            body { overflow-y: auto; padding: 60px 0; }
+            .platform-grid { grid-template-columns: 1fr; gap: 25px; }
+            body { overflow-y: auto; padding: 50px 0; }
             .platform-card { padding: 40px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="bg-layer"></div>
+    <div class="bg-layer">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
 
     <div class="lang-switcher" onclick="toggleLang()">
         <i class="bi bi-translate"></i>
@@ -251,13 +266,9 @@
             const body = document.body;
             const isAr = body.dir === 'rtl';
             
-            // تبديل الاتجاه
             body.dir = isAr ? 'ltr' : 'rtl';
-            
-            // تبديل نص الزر
             document.getElementById('lang-text').innerText = isAr ? 'العربية' : 'English';
             
-            // تبديل نصوص العناصر
             document.querySelectorAll('[data-en]').forEach(el => {
                 el.innerText = isAr ? el.getAttribute('data-en') : el.getAttribute('data-ar');
             });
