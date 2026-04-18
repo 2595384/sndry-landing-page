@@ -203,11 +203,11 @@
                             <div className="logo-container relative group block">
                                 <img src="/sndry-logo-d.png" alt="SNDRY" className="h-8 md:h-10 w-auto relative" />
                             </div>
-                            <nav className="hidden md:flex items-center gap-6">
-                                <a href="policies.html" className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-all hover:-translate-y-0.5">{t.policies}</a>
-                                <div className="w-1 h-1 bg-black/20 rounded-full"></div>
-                                <a href="privacy.html" className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-all hover:-translate-y-0.5">{t.privacy}</a>
-                            </nav>
+                            <nav className="flex items-center gap-3 md:gap-6">
+    <a href="policies.html" className="text-[9px] md:text-[11px] font-black uppercase tracking-widest text-gray-500 hover:text-black transition-all">{t.policies}</a>
+    <div className="w-1 h-1 bg-black/20 rounded-full hidden md:block"></div>
+    <a href="privacy.html" className="text-[9px] md:text-[11px] font-black uppercase tracking-widest text-gray-500 hover:text-black transition-all">{t.privacy}</a>
+</nav>
                         </div>
                         <button onClick={() => { setLang(lang === 'ar' ? 'en' : 'ar'); setCurrentIndex(0); }} className="px-6 py-2.5 rounded-full bg-black text-white text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-xl">
                             {t.switch}
