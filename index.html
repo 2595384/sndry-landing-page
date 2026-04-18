@@ -1,20 +1,274 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/sndry-logo-w.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>SNDRY GROUP</title>
-    <meta name="description" content="SNDRY GROUP - A catalog of ideas and products that drive us. Our products include SaaS ERP, SAMI AI, POS, and Flow." />
-    <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="SNDRY GROUP" />
-    <meta property="og:description" content="SNDRY GROUP - A catalog of ideas and products that drive us." />
-    <meta property="og:image" content="/sndry-logo-d.png" />
-    <meta property="twitter:card" content="summary_large_image" />
-  </head>
-  <body>
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNDRY GROUP | 2026</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        /* منع السكرول تماماً */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            overflow: hidden; /* No Scroll */
+            background-color: #ffffff;
+            color: #1a1a1a;
+        }
+
+        .bg-canvas {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none; opacity: 0.15;
+            transition: background 1s ease;
+        }
+
+        /* أنميشن السلايدات */
+        .slide-container {
+            display: flex; align-items: center; justify-content: center;
+            height: 100vh; padding: 100px 5% 80px;
+        }
+
+        .animate-slide-up {
+            animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(40px) scale(0.98); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* تنسيق الصور واللوجو */
+        .logo-hero {
+            width: clamp(280px, 40vw, 550px);
+            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.12));
+        }
+
+        .platform-img {
+            max-width: 100%; max-height: 50vh; object-fit: contain; border-radius: 24px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.15);
+        }
+
+        .phi-card {
+            background: rgba(255,255,255,0.6); backdrop-filter: blur(10px);
+            padding: 3rem 4rem; border-radius: 40px;
+            border: 1px solid rgba(255,255,255,0.5);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.03);
+        }
+
+        /* أزرار التنقل الدائرية */
+        .nav-btn {
+            width: 60px; height: 60px; border-radius: 50%;
+            background: rgba(255,255,255,0.8); backdrop-filter: blur(10px);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 24px; border: 1px solid rgba(0,0,0,0.05);
+            transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            cursor: pointer; z-index: 50;
+        }
+        .nav-btn:hover { background: #000; color: #fff; transform: scale(1.1); }
+
+        /* نقاط التنقل السفلية */
+        .dots-container {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%);
+            display: flex; gap: 8px; z-index: 100;
+            background: rgba(255,255,255,0.5); backdrop-filter: blur(10px);
+            padding: 10px 20px; border-radius: 30px;
+        }
+        .dot {
+            width: 8px; height: 8px; border-radius: 50%; background: rgba(0,0,0,0.2);
+            cursor: pointer; transition: all 0.3s ease;
+        }
+        .dot.active { background: #000; width: 24px; border-radius: 10px; }
+    </style>
+</head>
+<body>
     <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function App() {
+            // بنسحب اللغة من المتصفح لو موجودة، ولو مش موجودة بنخليها عربي
+            const [lang, setLang] = useState(() => {
+                return localStorage.getItem('sndry_lang') || 'ar';
+            });
+
+            useEffect(() => {
+    localStorage.setItem('sndry_lang', lang);
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+}, [lang]);
+            const [currentIndex, setCurrentIndex] = useState(0);
+
+            // المحتوى الكامل بدون Flow، والـ POS في المقدمة
+            const content = {
+                ar: {
+                    dir: 'rtl', switch: 'English', policies: 'السياسات', privacy: 'الخصوصية',
+                    sections: [
+                        { id: 'hero', color: '#2FA4D7', title: 'أهلاً وسهلاً... بوابتنا لخدمتكم', desc: 'هذا الموقع هو بوابتنا لخدمتكم، وهذه أعمالنا اللي بنفتخر فيها: إحنا شركة سعودية، وعندنا فريق متخصص في القاهرة بيوفر دعم مباشر لعملائنا في مصر. هدفنا نبسط لك التقنية ونخليها أداة فعلية تنمي بها عملك.', img: '/sndry-logo-d.png', type: 'hero' },
+                        { id: 'erp', color: '#16A085', title: 'SNDRY ERP', img: '/logo_dark.png', type: 'product', link: 'https://erp.sndry.net', desc: 'نظام متكامل لإدارة الموارد والعمليات داخل الشركات. يتيح لك متابعة جميع أقسام عملك داخل المكتب وخارجه من مكان واحد، ويساعدك على تنظيم أعمالك وتطويرها بشكل احترافي.' },
+                        { id: 'pos', color: '#00BCD4', title: 'SNDRY POS', img: '/pos.png', type: 'product', link: 'https://pos.sndry.net', desc: 'نظام نقاط بيع ذكي صمم خصيصاً للسوق المصري. تم تطويره بواسطة فريقنا في القاهرة ليتناسب مع طبيعة التجارة والأعمال في مصر، مع دعم كامل للتعاملات المحلية والمتطلبات الخاصة بالسوق. (متوفر في مصر)' },
+                        { id: 'sami', color: '#E67E22', title: 'SAMI AI', img: '/sami-logo-dark.png', type: 'product', link: 'https://sami.sndry.net', desc: 'مساعدك التسويقي الذكي. صممناه عشان يساحبك في عالم التسويق الرقمي حتى لو ما عندك خلفية مسبقة فيه. يقدر ينشئ لك حملات إعلانية، يحللك المنافسين، يتابع الترندات، ويعمل جدولة تلقائية للمحتوى. كمان يكشف لك البوتات المزعجة.' },
+                        { id: 'phi1', color: '#27AE60', title: 'الالتزام بالاستقلال', type: 'phi', desc: 'نحن هنا لنصنع الفارق بشروطنا. لا تحكمنا مجالس إدارات تسعى للربح السريع، ولا مستثمرون يملون علينا خياراتنا. استقلاليتنا المطلقة تمنحنا الجرأة لنبتكر بشغف، ونجازف حيث يتراجع الآخرون، ولنبني لك أدوات تضع نجاحك أولاً.' },
+                        { id: 'phi2', color: '#8E44AD', title: 'الفرق الصغيرة', type: 'phi', desc: 'نؤمن بأن الإنجازات العظيمة لا تتطلب جيوشاً من الموظفين، بل عقولاً ذكية ومركزة. الفرق الصغيرة تتحرك بسرعة، تتخذ القرارات بمرونة، وتركز على ما يهم حقاً دون تعقيدات إدارية. الأقل غالباً ما يعني الأفضل.' },
+                        { id: 'phi3', color: '#00BCD4', title: 'نحن لا نبيع بياناتك', type: 'phi', desc: 'نموذج عملنا يعتمد كلياً على بيع منتجات تلبي تطلعاتك، وليس بيع خصوصيتك للآخرين. نحن نرفض بشكل قاطع المتاجرة بمعلومات عملائنا أو استغلالها لغايات إعلانية. نحن نبني أدوات احترافية، وأنت تدفع مقابل استخدامها.' },
+                        { id: 'phi4', color: '#CA8E0B', title: 'ملايين الشركات، لا حيتان السوق', type: 'phi', desc: 'تتصارع الشركات التقنية الكبرى للفوز بعقود "حيتان السوق" بمليارات الريالات. نحن نرى أن هذا المسار ممل. شغفنا الحقيقي ينصب على ملايين الشركات الصغيرة والمتوسطة في الوطن العربي. نحن هنا للوقوف بجانبهم.' },
+                        { id: 'phi5', color: '#D81B60', title: 'لا تستنسخ بيئة المكتب', type: 'phi', desc: 'العمل عن بُعد لا يعني أن تنقل روتين المكتب بكامل ملله إلى شاشتك. اعتمد التواصل غير المتزامن لتعطي فريقك مساحة للإبداع والتركيز. لا تحاول تقليد جدران المكتب وقيوده في العالم الرقمي.. بل تمرد عليها وابنِ ثقافة قائمة على الإنتاج.' },
+                        { id: 'phi6', color: '#16A085', title: 'الساعات ليست متساوية', type: 'phi', desc: 'الستون دقيقة المتواصلة تصنع إنجازاً مبهراً، بينما الساعة الممزقة إلى أجزاء تتخللها المقاطعات لا تصنع شيئاً. العمل المتواصل هو مفتاح الجودة والإبداع الحقيقي. نحن نحمي وقتنا بصرامة لضمان أعلى مستويات التركيز.' },
+                        { id: 'phi7', color: '#C0392B', title: 'فخ التكرار', type: 'phi', desc: 'أي مهمة تقوم بها يومياً وبنفس الطريقة المتكررة هي ببساطة إهدار لوقتك وموهبتك. الروتين الأعمى لا يصنع التقدم. نحن نؤمن بأن الذكاء يكمن في ابتكار حلول تغير النتائج وتمنحك وقتك وحريتك.' },
+                        { id: 'phi8', color: '#E67E22', title: 'الاجتماعات ليست مجانية', type: 'phi', desc: 'الاجتماع يجب أن يكون دائماً الملاذ الأخير. حشر خمسة أشخاص في غرفة لمدة ساعة يعني استنزاف خمس ساعات من وقت الفريق. لا نعقد الاجتماعات إلا عندما تكون حتمية وعائدها استثنائياً.' },
+                        { id: 'phi9', color: '#9B59B6', title: 'فخ التفكير الهامشي', type: 'phi', desc: 'التردد في الاستثمار بالأدوات الصحيحة هو أغلى تكلفة قد تدفعها. التفكير الهامشي يخدعك بالتوفير الوهمي، بينما يسرق كفاءتك كل يوم. نحن نستثمر بلا تردد في التقنيات التي تضاعف إنتاجيتنا.' },
+                        { id: 'phi10', color: '#C06C84', title: 'شركات صامدة، لا ناشئة', type: 'phi', desc: 'العالم مهووس بـ "الشركات الناشئة" التي تسعى للاحتراق السريع. نحن ننحاز للشركات "الصامدة" (Stayups) التي أثبتت قيمتها الحقيقية وبنت أساساً متيناً للاستدامة. فخورون بأن عام 2026 يمثل عامنا الرابع من الاستمرارية.' },
+                        { id: 'phi11', color: '#E84393', title: 'رؤية عالمية', type: 'phi', desc: 'عبر منصاتنا، تمتد طموحاتنا لتتخطى الحدود الجغرافية. نحن نبني منتجات بمعايير عالمية تنافس محلياً ودولياً. وجهة نظرنا بُنيت على وعي شامل يمنحنا فهماً أعمق لما يحتاجه السوق الفعلي، أينما كان.' },
+                        { id: 'phi12', color: '#AF7AC5', title: 'لعنة سوء التواصل', type: 'phi', desc: 'الشركات لا تعاني من نقص في التواصل، بل من التخمة في "سوء التواصل". كثرة الرسائل لا تصنع الوضوح بل تخلق ضجيجاً. نحن نضع ثقتنا في الفرق الصغيرة والتواصل المكتوب بوضوح قاطع.' },
+                        { id: 'phi13', color: '#FD79A8', title: 'فخ الـ "سهل"', type: 'phi', desc: 'كلمة "سهل" هي الكلمة التي يستخدمها البعض لتبسيط مهام الآخرين. نحن نحترم تعقيد كل دور ونمنح كل تفصيلة وزنها الحقيقي، لأن النجاح الاستثنائي لا يُبنى أبداً على تهميش جهود الآخرين.' },
+                        { id: 'phi14', color: '#00BCD4', title: 'الشركات ليست عائلات', type: 'phi', desc: 'الشركات العظيمة ليست عائلات بديلة، بل هي حليف وداعم قوي لعائلتك الحقيقية. نحن لا نسرق وقتك الشخصي، ولا نتوقع منك الرد في الإجازات. وقتك خارج العمل هو ملكك بالكامل.' },
+                        { id: 'phi15', color: '#006C35', title: 'رؤية 2030', type: 'phi', desc: 'نحن لا نبني برمجيات فقط؛ بل نبني مستقبلاً يليق بطموح المملكة العربية السعودية. نؤمن بشدة أن العبقرية السعودية قادرة على تصميم أنظمة ومنصات تتفوق على المعايير العالمية.' },
+                        { id: 'phi16', color: '#1A1A1A', title: 'حرفة رقمية', type: 'phi', desc: 'نحن لا نرى البرمجة مجرد أسطر من الأكواد، بل نتناولها كحرفة فنية تتطلب الدقة والإتقان. كل واجهة صُممت بعناية لتعكس أرقى معايير الجودة. البساطة الظاهرة تخفي خلفها تعقيداً هندسياً مدروساً بحب.' }
+                    ]
+                },
+                en: {
+                    dir: 'ltr', switch: 'عربي', policies: 'Policies', privacy: 'Privacy',
+                    sections: [
+                        { id: 'hero', color: '#ffffff', title: 'Welcome... Our Gateway to Serve You', desc: 'This site is our gateway to serving you, and these are the products we take pride in. We are a Saudi company with a specialized team in Cairo providing direct support to our clients in Egypt. Our goal is to simplify technology.', img: '/sndry-logo-d.png', type: 'hero' },
+                        { id: 'erp', color: '#16A085', title: 'SNDRY ERP', img: '/logo_dark.png', type: 'product', link: 'https://erp.sndry.net', desc: 'An integrated system for managing resources and operations within companies. It allows you to monitor all your company departments inside and outside the office from one place.' },
+                        { id: 'pos', color: '#DE3D3A', title: 'SNDRY POS', img: '/pos.png', type: 'product', link: 'https://pos.sndry.net', desc: 'A smart point-of-sale system designed specifically for the Egyptian market. Developed by our team in Cairo to align with the nature of trade and business in Egypt, with full support for local transactions.' },
+                        { id: 'sami', color: '#CA8E0B', title: 'SAMI AI', img: '/sami.png', type: 'product', link: 'https://sami.sndry.net', desc: 'Your intelligent marketing assistant. It generates campaigns, analyzes competitors, follows trends, schedules content, and detects annoying bots to protect your budget.' },
+                        { id: 'phi1', color: '#27AE60', title: 'Commitment to Independence', type: 'phi', desc: 'We make a difference on our own terms. No boards chasing quick wins, and no investors dictating our roadmap. Our absolute freedom gives us the audacity to build with passion and craft tools that truly prioritize your success.' },
+                        { id: 'phi2', color: '#8E44AD', title: 'Small Teams', type: 'phi', desc: 'Big impact doesn\'t require massive headcounts, but sharp and focused minds. Small teams move faster, pivot with agility, and zero in on what truly matters without bureaucratic friction. Less is often more effective.' },
+                        { id: 'phi3', color: '#00BCD4', title: 'We Don\'t Sell You', type: 'phi', desc: 'Our business model relies on selling products that meet your expectations, not selling your privacy to others. We fundamentally refuse to monetize our customers\' personal information or exploit it for advertising.' },
+                        { id: 'phi4', color: '#CA8E0B', title: 'Millions of Companies, Not Whales', type: 'phi', desc: 'Our true passion lies with the millions of small and medium-sized businesses and startups across the Arab world. They are the backbone of our economy. We are here to stand in their corner with world-class tools.' },
+                        { id: 'phi5', color: '#D81B60', title: 'Don\'t Clone the Office', type: 'phi', desc: 'Remote work shouldn\'t mean copying office routine onto your screen. Switch to asynchronous communication to give your team room for creativity and focus. Drop the obsession with constant surveillance.' },
+                        { id: 'phi6', color: '#16A085', title: 'Hours Are Not Equal', type: 'phi', desc: 'A continuous 60-minute stretch produces breathtaking results, while an hour fractured by interruptions produces nothing. We rigorously protect our time to guarantee maximum focus and high-quality creativity.' },
+                        { id: 'phi7', color: '#C0392B', title: 'The Trap of Repetition', type: 'phi', desc: 'Any task you perform daily in the same repetitive way is a waste of your time and talent. True intelligence lies in inventing solutions that change outcomes and grant you time and freedom.' },
+                        { id: 'phi8', color: '#E67E22', title: 'Meetings Are Not Free', type: 'phi', desc: 'Meetings should always be a last resort. Pulling five people into a room for an hour consumes five hours of team time. We only hold meetings when absolutely essential and when the return is exceptional.' },
+                        { id: 'phi9', color: '#9B59B6', title: 'Marginal Thinking Trap', type: 'phi', desc: 'Hesitating to invest in the right tools is the most expensive cost you will pay. Marginal thinking deceives you with fake savings while stealing your efficiency daily.' },
+                        { id: 'phi10', color: '#C06C84', title: 'Stayups, Not Startups', type: 'phi', desc: 'The world is obsessed with "startups" chasing quick burnouts. We champion "stayups" that have proven their value and built a solid foundation for sustainability. 2026 marks our fourth year of commitment.' },
+                        { id: 'phi11', color: '#E84393', title: 'Global Vision', type: 'phi', desc: 'Across our platforms, our ambitions extend beyond geographical borders. We build products with global standards that compete locally and internationally.' },
+                        { id: 'phi12', color: '#AF7AC5', title: 'The Curse of Miscommunication', type: 'phi', desc: 'Companies suffer from "miscommunication" surplus, not a communication lack. Too many messages create noise, not clarity. We trust small teams and relentlessly clear written communication.' },
+                        { id: 'phi13', color: '#FD79A8', title: 'The "Easy" Trap', type: 'phi', desc: '"Easy" is the word some use to oversimplify others\' tasks. We respect the complexity of every role and give every detail its true weight, because exceptional success is never built on marginalizing others.' },
+                        { id: 'phi14', color: '#00BCD4', title: 'Companies Are Not Families', type: 'phi', desc: 'Great companies are not substitute families; they are steadfast allies to your real family. We don\'t steal your personal time or expect responses during weekends.' },
+                        { id: 'phi15', color: '#006C35', title: 'Vision 2030', type: 'phi', desc: 'We don\'t just build software; we engineer a future matching Saudi Arabia\'s boundless ambition. We firmly believe Saudi ingenuity can design platforms that exceed global standards.' },
+                        { id: 'phi16', color: '#1A1A1A', title: 'Digital Craftsmanship', type: 'phi', desc: 'We don\'t see coding as just lines of text; it\'s a rigorous craft that demands precision. Every interface is meticulously designed to reflect the highest standards of quality.' }
+                    ]
+                }
+            };
+
+            const t = lang === 'ar' ? content.ar : content.en;
+            const slides = t.sections;
+            const currentSlide = slides[currentIndex];
+
+            // وظائف التنقل
+            const handleNext = () => setCurrentIndex((prev) => (prev + 1) % slides.length);
+            const handlePrev = () => setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
+
+            // التنقل بالكيبورد
+            useEffect(() => {
+                const handleKeyDown = (e) => {
+                    if (e.key === 'ArrowRight') t.dir === 'rtl' ? handlePrev() : handleNext();
+                    if (e.key === 'ArrowLeft') t.dir === 'rtl' ? handleNext() : handlePrev();
+                };
+                window.addEventListener('keydown', handleKeyDown);
+                return () => window.removeEventListener('keydown', handleKeyDown);
+            }, [t.dir, slides.length]);
+
+            return (
+                <div dir={t.dir} className="h-screen w-screen relative overflow-hidden transition-colors duration-1000" style={{ backgroundColor: currentSlide.color + '15' }}>
+                    
+                    {/* الخلفية الملونة */}
+                    <div className="bg-canvas" style={{ background: `radial-gradient(circle at 50% 50%, ${currentSlide.color}, transparent)` }}></div>
+
+                    {/* الهيدر العائم */}
+                    <header className="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl px-8 py-4 flex justify-between items-center z-[200] bg-white/70 backdrop-blur-xl rounded-full border border-white/40 shadow-[0_10px_40px_0_rgba(0,0,0,0.05)]">
+                        <div className="flex items-center gap-8">
+                            <div className="logo-container relative group block">
+                                <img src="/sndry-logo-d.png" alt="SNDRY" className="h-8 md:h-10 w-auto relative" />
+                            </div>
+                            <nav className="hidden md:flex items-center gap-6">
+                                <a href="policies.html" className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-all hover:-translate-y-0.5">{t.policies}</a>
+                                <div className="w-1 h-1 bg-black/20 rounded-full"></div>
+                                <a href="privacy.html" className="text-[11px] font-black uppercase tracking-[0.2em] text-gray-400 hover:text-black transition-all hover:-translate-y-0.5">{t.privacy}</a>
+                            </nav>
+                        </div>
+                        <button onClick={() => { setLang(lang === 'ar' ? 'en' : 'ar'); setCurrentIndex(0); }} className="px-6 py-2.5 rounded-full bg-black text-white text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-xl">
+                            {t.switch}
+                        </button>
+                    </header>
+
+                    {/* أزرار التنقل الجانبية */}
+                    <div className="fixed inset-y-0 left-0 w-24 flex items-center justify-center z-50">
+                        <button onClick={t.dir === 'rtl' ? handleNext : handlePrev} className="nav-btn">
+                            {t.dir === 'rtl' ? '←' : '←'}
+                        </button>
+                    </div>
+                    <div className="fixed inset-y-0 right-0 w-24 flex items-center justify-center z-50">
+                        <button onClick={t.dir === 'rtl' ? handlePrev : handleNext} className="nav-btn">
+                            {t.dir === 'rtl' ? '→' : '→'}
+                        </button>
+                    </div>
+
+                    {/* المحتوى الرئيسي (السلايد المعروض) */}
+                    <main key={currentIndex} className="slide-container animate-slide-up w-full h-full max-w-7xl mx-auto">
+                        <div className={`w-full grid ${currentSlide.type === 'phi' ? 'grid-cols-1' : 'md:grid-cols-2'} gap-12 md:gap-20 items-center`}>
+                            
+                            <div className={`space-y-6 md:space-y-8 ${currentSlide.type === 'phi' ? 'text-center max-w-4xl mx-auto phi-card' : ''}`}>
+                                {currentSlide.type === 'phi' && (
+                                    <div className="text-[10px] font-black tracking-[0.5em] text-gray-400 uppercase mb-4">Philosophy {currentIndex - 3} / 16</div>
+                                )}
+                                
+                                {currentSlide.type === 'hero' ? (
+                                    <h1 className="text-4xl md:text-7xl font-black leading-tight tracking-tighter text-black">{currentSlide.title}</h1>
+                                ) : (
+                                    <h2 className="text-3xl md:text-6xl font-black tracking-tighter" style={{ color: currentSlide.color }}>
+                                        {currentSlide.type === 'phi' ? `"${currentSlide.title}"` : currentSlide.title}
+                                    </h2>
+                                )}
+                                
+                                <p className="text-lg md:text-2xl text-gray-700 leading-relaxed font-medium">
+                                    {currentSlide.desc}
+                                </p>
+                                
+                                {currentSlide.link && (
+                                    <div className="pt-4">
+                                        <a href={currentSlide.link} target="_blank" className="inline-block bg-black text-white px-10 py-4 font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform rounded-full shadow-xl">
+                                            {lang === 'ar' ? 'استكشف المنصة' : 'Explore Platform'}
+                                        </a>
+                                    </div>
+                                )}
+                            </div>
+
+                            {currentSlide.type !== 'phi' && (
+                                <div className="flex justify-center order-first md:order-last">
+                                    {currentSlide.type === 'hero' ? (
+                                        <img src={currentSlide.img} className="logo-hero" alt="SNDRY" />
+                                    ) : (
+                                        <img src={currentSlide.img} className="platform-img" alt={currentSlide.title} onError={(e) => { e.target.style.display='none' }} />
+                                    )}
+                                </div>
+                            )}
+
+                        </div>
+                    </main>
+
+                    {/* نقاط التنقل السفلية (Dots Pagination) */}
+                    <div className="dots-container">
+                        {slides.map((_, i) => (
+                            <div 
+                                key={i} 
+                                onClick={() => setCurrentIndex(i)}
+                                className={`dot ${i === currentIndex ? 'active' : ''}`}
+                                title={slides[i].title}
+                            ></div>
+                        ))}
+                    </div>
+
+                </div>
+            );
+        }
+        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+    </script>
+</body>
 </html>

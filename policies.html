@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>السياسات وشروط الخدمة | SNDRY GROUP</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <style>
+        body { font-family: 'Tajawal', sans-serif; background-color: #fafafa; color: #1a1a1a; margin: 0; overflow-x: hidden; }
+        .legal-card { 
+            background: #ffffff; border-radius: 32px; padding: 4rem; 
+            box-shadow: 0 20px 40px rgba(0,0,0,0.03); 
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .legal-card:hover { transform: translateY(-5px); }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect } = React;
+
+        function PoliciesApp() {
+            // بنسحب اللغة من المتصفح لو موجودة، ولو مش موجودة بنخليها عربي
+const [lang, setLang] = useState(() => {
+    return localStorage.getItem('sndry_lang') || 'ar';
+});
+useEffect(() => {
+    localStorage.setItem('sndry_lang', lang);
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+}, [lang]);
+
+            // المحتوى الحرفي المأخوذ من ملف Policies.jsx
+            const translations = {
+                ar: {
+                    dir: 'rtl',
+                    switch: 'English',
+                    back: '← العودة للرئيسية',
+                    title: 'السياسات وشروط الخدمة',
+                    subtitle: 'جميع الشروط والسياسات التي توافق عليها عند استخدام أحد منتجات SNDRY GROUP.',
+                    sections: [
+                        {
+                            title: 'التعريفات',
+                            desc: 'تشير "الشركة" أو "نحن" أو "لنا" في أي من سياساتنا وشروطنا إلى مجموعة SNDRY GROUP. تشير كلمة "الخدمات" إلى منصاتنا وأي منتج يتم إنشاؤه وتطويره بواسطة SNDRY GROUP، مثل SaaS ERP و SAMI و Flow.'
+                        },
+                        {
+                            title: 'شروط الحساب',
+                            desc: 'أنت مسؤول عن الحفاظ على أمان حسابك وكلمة المرور الخاصة بك والتأكد من قيام أي من المستخدمين التابعين لك بنفس الشيء. لا يمكن ولا تتحمل الشركة مسؤولية أي خسارة أو ضرر ناتج عن فشلك في الامتثال لهذا الالتزام الأمني. نوصي جميع المستخدمين بإعداد المصادقة الثنائية لمزيد من الأمان. أنت مسؤول مسؤولية كاملة عن جميع المحتويات المنشورة والنشاط الذي يحدث من خلال حسابك.'
+                        },
+                        {
+                            title: 'الإلغاء والإنهاء',
+                            desc: 'أنت وحدك المسؤول عن الإلغاء الصحيح لحسابك. سيتم إيقاف وصولك إلى محتواك فور إلغاء الحساب. نحن نحتفظ بالحق في تعليق أو إنهاء حسابك ورفض أي وكل استخدام حالي أو مستقبلي لخدماتنا لأي سبب في أي وقت.'
+                        },
+                        {
+                            title: 'تعديلات الخدمة والأسعار',
+                            desc: 'نحتفظ بالحق في أي وقت بتعديل أو إيقاف أي جزء من خدماتنا مؤقتاً أو دائماً مع أو بدون إشعار مسبق. في حال تغيير الأسعار للعملاء الحاليين، سنقوم بتقديم إشعار مسبق لا يقل عن 30 يوماً.'
+                        },
+                        {
+                            title: 'الملكية الفكرية والمحتوى',
+                            desc: 'أنت تمنحنا ترخيصاً لاستخدام المحتوى المرفوع منك لتوفير الخدمات لك، ولكننا لا نملك أي حقوق ملكية عليه. الشركة تمتلك جميع الحقوق والملكية في الخدمات، فلا يجوز لك نسخ أو إعادة استخدام أي جزء من التصميم أو الهيكل البرمجي بدون إذن خطي صريح منا.'
+                        },
+                        {
+                            title: 'التواصل ودعم العملاء',
+                            desc: 'إذا كانت لديك أي أسئلة حول أي من هذه الشروط أو الاستفسارات المتعلقة بحماية بياناتك، يرجى التواصل معنا عبر البريد الإلكتروني:'
+                        }
+                    ]
+                },
+                en: {
+                    dir: 'ltr',
+                    switch: 'عربي',
+                    back: '← Back to Home',
+                    title: 'Policies & Terms of Service',
+                    subtitle: 'All the terms and policies you agree to when you use a SNDRY GROUP product.',
+                    sections: [
+                        {
+                            title: 'Definitions',
+                            desc: '"Company", "we", "our", or "us" in any of our policies refers to SNDRY GROUP. "Services" refers to our platforms and any product created and maintained by SNDRY GROUP, such as SaaS ERP, SAMI, and Flow.'
+                        },
+                        {
+                            title: 'Account Terms',
+                            desc: 'You are responsible for maintaining the security of your account and password and for ensuring that any of your users do the same. The Company cannot and will not be liable for any loss or damage from your failure to comply with this security obligation. We recommend all users set up two-factor authentication for added security. You are responsible for all content posted and activity that occurs under your account.'
+                        },
+                        {
+                            title: 'Cancellation and Termination',
+                            desc: 'You are solely responsible for properly canceling your account. All of your content will be inaccessible immediately upon account cancellation. We reserve the right to suspend or terminate your account and refuse any and all current or future use of our Services for any reason at any time.'
+                        },
+                        {
+                            title: 'Modifications to the Service and Prices',
+                            desc: 'We reserve the right at any time to modify or discontinue, temporarily or permanently, any part of our Services with or without notice. If we choose to change the prices for existing customers, we will give at least 30 days notice.'
+                        },
+                        {
+                            title: 'Copyright and Content Ownership',
+                            desc: 'You give us a limited license to use the content posted by you in order to provide the Services to you, but we claim no ownership rights over those materials. The Company owns all right, title, and interest in and to the Services. You may not duplicate, copy, or reuse any visual design elements or code without our express written permission.'
+                        },
+                        {
+                            title: 'Contact and Support',
+                            desc: 'If you have a question about any of these Terms or concerns regarding your data protection, please contact us at:'
+                        }
+                    ]
+                }
+            };
+
+            const t = translations[lang];
+
+            useEffect(() => {
+                document.documentElement.dir = t.dir;
+                document.documentElement.lang = lang;
+            }, [lang, t.dir]);
+
+            return (
+                <div className="min-h-screen pb-32">
+                    
+                    {/* الهيدر العائم الفخم (Floating Header) */}
+                    <header className="fixed top-6 left-1/2 -translate-x-1/2 w-[90%] max-w-7xl px-8 py-4 flex justify-between items-center z-[200] bg-white/70 backdrop-blur-xl rounded-full border border-white/40 shadow-[0_8px_32px_0_rgba(0,0,0,0.05)]">
+                        <div className="flex items-center gap-8">
+                            <a href="index.html" className="text-xs font-black opacity-50 hover:opacity-100 transition-opacity">
+                                {t.back}
+                            </a>
+                            <div className="hidden md:block w-px h-6 bg-gray-300"></div>
+                            <img src="/sndry-logo-d.png" alt="SNDRY" className="h-6 md:h-8 w-auto opacity-30" />
+                        </div>
+                        
+                        {/* زر تبديل اللغة */}
+                        <button 
+                            onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')} 
+                            className="px-6 py-2 rounded-full bg-black text-white text-[10px] font-black uppercase tracking-widest transition-all hover:scale-105"
+                        >
+                            {t.switch}
+                        </button>
+                    </header>
+
+                    {/* المحتوى الرئيسي */}
+                    <main className="max-w-4xl mx-auto px-6 pt-48">
+                        <div className="text-center mb-24">
+                            <h1 className="text-5xl md:text-7xl font-black mb-8 tracking-tighter text-gray-900">{t.title}</h1>
+                            <p className="text-xl md:text-2xl text-gray-500 font-medium leading-relaxed max-w-2xl mx-auto">
+                                {t.subtitle}
+                            </p>
+                        </div>
+
+                        <div className="space-y-10">
+                            {t.sections.map((sec, index) => (
+                                <section key={index} className="legal-card">
+                                    <h2 className="text-3xl font-black mb-6 text-gray-900">{sec.title}</h2>
+                                    <p className="text-xl text-gray-500 leading-relaxed font-medium">
+                                        {sec.desc}
+                                    </p>
+                                    
+                                    {/* زر الإيميل يظهر فقط في القسم الأخير (التواصل) */}
+                                    {index === t.sections.length - 1 && (
+                                        <a href="mailto:info@sndry.net" className="inline-block mt-8 text-2xl font-black text-black border-b-2 border-black pb-1 hover:text-blue-600 hover:border-blue-600 transition-colors">
+                                            info@sndry.net
+                                        </a>
+                                    )}
+                                </section>
+                            ))}
+                        </div>
+                    </main>
+
+                    {/* الفوتر */}
+                    <footer className="mt-32 text-center">
+                        <div className="h-px w-20 bg-gray-200 mx-auto mb-10"></div>
+                        <p className="text-gray-400 font-black tracking-[0.5em] text-[10px] uppercase">
+                            SNDRY GROUP LEGAL • 2026
+                        </p>
+                    </footer>
+                </div>
+            );
+        }
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<PoliciesApp />);
+    </script>
+</body>
+</html>
