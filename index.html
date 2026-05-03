@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNDRY | بوابة المنظومة الرقمية</title>
-    <meta name="description" content="بوابة SNDRY الموحدة للخدمات الرقمية وحلول الأعمال.">
+    <title>SNDRY GROUP | 2026</title>
     
-    <!-- الخطوط -->
+    <!-- 🚀 أكواد الـ SEO والمشاركة (من ملفك القديم) -->
+    <meta name="description" content="مجموعة SNDRY - منصات رقمية احترافية تشمل نظام SNDRY POS لنقاط البيع في مصر، ونظام SNDRY ERP لإدارة الموارد، ومساعد SAMI AI التسويقي.">
+    <meta name="keywords" content="نظام نقاط بيع, POS مصر, نظام ERP, إدارة الفعاليات, مساعد تسويق ذكي, SNDRY, تقنية سعودية">
+    <meta property="og:title" content="SNDRY GROUP | بوابتك للتحول الرقمي">
+    <meta property="og:description" content="اكتشف منصات SNDRY: نقاط بيع ذكية، أنظمة ERP متكاملة، ومساعد تسويقي بالذكاء الاصطناعي.">
+    <meta property="og:image" content="./sndry-logo-d.png"> 
+    <meta property="og:url" content="https://sndry.net">
+    <meta property="og:type" content="website">
+
+    <!-- الفافيكون -->
+    <link rel="icon" type="image/png" href="./favicon.png">
+    <link rel="apple-touch-icon" href="./favicon.png">
+
+    <!-- الخطوط والمكتبات -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind & React -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
@@ -18,26 +28,25 @@
     <style>
         body {
             font-family: 'Tajawal', sans-serif;
-            background-color: #f8f9fa; /* لون خلفية البوابات الرسمي */
+            background-color: #f8f9fa; /* خلفية ناجز */
             color: #1a1a1a;
             margin: 0;
             overflow-x: hidden;
         }
 
-        /* خلفية النقط (Dotted Background) زي ناجز بالظبط */
+        /* خلفية النقط (Dotted Background) */
         .hero-pattern {
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             background-image: radial-gradient(#d1d5db 2px, transparent 2px);
             background-size: 24px 24px;
             opacity: 0.4;
-            /* عمل تدرج عشان النقط تختفي من الأطراف */
             mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
             -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 70%);
             z-index: 0;
         }
 
-        /* الهيدر وتأثير الرابط النشط */
+        /* الهيدر */
         .nav-item {
             height: 100%;
             display: flex;
@@ -47,12 +56,10 @@
             transition: all 0.2s ease;
         }
         .nav-item.active {
-            background-color: #047857; /* لون أخضر رسمي زي ناجز */
+            background-color: #047857; /* لون أخضر ناجز */
             color: white;
         }
-        .nav-item:not(.active):hover {
-            color: #047857;
-        }
+        .nav-item:not(.active):hover { color: #047857; }
 
         /* كروت الخدمات */
         .service-card {
@@ -73,12 +80,12 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.08);
         }
         .service-card.active-card {
-            border-top: 4px solid #047857; /* خط علوي أخضر للكارت الرئيسي */
+            border-top: 4px solid #047857;
             transform: scale(1.02);
             box-shadow: 0 20px 50px rgba(4,120,87,0.1);
         }
 
-        /* تنسيق الشبكة للمبادئ */
+        /* كروت الفلسفة (الـ 16 نقطة) */
         .phi-grid-card {
             background: white;
             padding: 1.5rem;
@@ -104,46 +111,47 @@
                 document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
             }, [lang]);
 
+            // المحتوى من ملفك القديم بالحرف وبنفس مسارات الصور!
             const content = {
                 ar: {
                     dir: 'rtl',
                     nav: { home: 'الرئيسية', policies: 'السياسات', privacy: 'الخصوصية', switch: 'English' },
-                    hero: { title: 'بوابة SNDRY', subtitle: 'المنصة الموحدة للخدمات وحلول الأعمال الرقمية' },
+                    hero: { title: 'منصة SNDRY', subtitle: 'المنصة الموحدة للخدمات وحلول الأعمال الرقمية' },
                     cards: [
-                        { id: 'pos', title: 'SNDRY POS', type: 'أعمال | قطاع التجزئة', desc: 'نظام نقاط بيع ذكي صمم خصيصاً للسوق المصري. يدعم التعاملات المحلية والمتاجر.', btn: 'استكشف المنصة ←', active: true, link: 'https://pos.sndry.net' },
-                        { id: 'erp', title: 'SNDRY ERP', type: 'شركات | إدارة الموارد', desc: 'نظام متكامل لإدارة الموارد والعمليات داخل الشركات ومتابعة الأقسام باحترافية.', active: false, link: 'https://erp.sndry.net' },
-                        { id: 'sami', title: 'SAMI AI', type: 'تسويق | ذكاء اصطناعي', desc: 'مساعدك التسويقي الذكي لإنشاء الحملات، تحليل المنافسين، وجدولة المحتوى.', active: false, link: 'https://sami.sndry.net' }
+                        { id: 'pos', title: 'SNDRY POS', type: 'أعمال | قطاع التجزئة', desc: 'نظام نقاط بيع ذكي صمم خصيصاً للسوق المصري. تم تطويره بواسطة فريقنا في القاهرة ليتناسب مع طبيعة التجارة والأعمال في مصر.', btn: 'استكشف المنصة ←', active: true, link: 'https://pos.sndry.net', img: './pos.png' },
+                        { id: 'erp', title: 'SNDRY ERP', type: 'حكومة | إدارة الموارد', desc: 'نظام متكامل لإدارة الموارد والعمليات داخل الشركات. يتيح لك متابعة جميع أقسام عملك داخل المكتب وخارجه من مكان واحد.', active: false, link: 'https://erp.sndry.net', img: './logo_dark.png' },
+                        { id: 'sami', title: 'SAMI AI', type: 'أفراد | مساعد تسويق', desc: 'مساعدك التسويقي الذكي. صممناه عشان يصاحبك في عالم التسويق الرقمي ويحللك المنافسين ويتابع الترندات.', active: false, link: 'https://sami.sndry.net', img: './sami-logo-dark.png' }
                     ],
-                    phiTitle: 'أبرز المبادئ والفلسفة التقنية',
+                    phiTitle: 'أبرز الخدمات الإلكترونية والمبادئ',
                     philosophy: [
-                        { title: 'الالتزام بالاستقلال', desc: 'استقلاليتنا المطلقة تمنحنا الجرأة لنبتكر بشغف، ونجازف حيث يتراجع الآخرون.' },
-                        { title: 'الفرق الصغيرة', desc: 'نؤمن بأن الإنجازات العظيمة تتطلب عقولاً ذكية ومركزة، فالأقل غالباً ما يعني الأفضل.' },
-                        { title: 'نحن لا نبيع بياناتك', desc: 'نحن نرفض بشكل قاطع المتاجرة بمعلومات عملائنا أو استغلالها لغايات إعلانية.' },
-                        { title: 'ملايين الشركات', desc: 'شغفنا الحقيقي ينصب على ملايين الشركات الصغيرة والمتوسطة في الوطن العربي.' },
-                        { title: 'لا تستنسخ بيئة المكتب', desc: 'العمل عن بُعد لا يعني نقل روتين المكتب. اعتمد التواصل غير المتزامن لمساحة إبداع أكبر.' },
-                        { title: 'الساعات ليست متساوية', desc: 'الستون دقيقة المتواصلة تصنع إنجازاً مبهراً. العمل المتواصل هو مفتاح الجودة.' },
-                        { title: 'فخ التكرار', desc: 'الروتين الأعمى لا يصنع التقدم. الذكاء يكمن في ابتكار حلول تمنحك وقتك وحريتك.' },
-                        { title: 'الاجتماعات ليست مجانية', desc: 'الاجتماع يجب أن يكون الملاذ الأخير، لا نعقد الاجتماعات إلا عندما تكون حتمية.' },
-                        { title: 'فخ التفكير الهامشي', desc: 'التردد في الاستثمار بالأدوات الصحيحة هو أغلى تكلفة قد تدفعها من كفاءتك.' },
-                        { title: 'شركات صامدة', desc: 'نحن ننحاز للشركات الصامدة (Stayups) التي أثبتت قيمتها. فخورون بعامنا الرابع.' },
-                        { title: 'رؤية عالمية', desc: 'عبر منصاتنا، نبني منتجات بمعايير عالمية تنافس محلياً ودولياً بوعي شامل.' },
-                        { title: 'لعنة سوء التواصل', desc: 'الشركات تعاني من "سوء التواصل". نضع ثقتنا في التواصل المكتوب بوضوح قاطع.' },
-                        { title: 'فخ الـ "سهل"', desc: 'نحن نحترم تعقيد كل دور ونمنح كل تفصيلة وزنها الحقيقي بدون تهميش لأحد.' },
-                        { title: 'الشركات ليست عائلات', desc: 'الشركات العظيمة حليف لعائلتك الحقيقية. وقتك خارج العمل هو ملكك بالكامل.' },
-                        { title: 'رؤية 2030', desc: 'نبني مستقبلاً يليق بطموح السعودية، نؤمن أن العبقرية السعودية تتفوق عالمياً.' },
-                        { title: 'حرفة رقمية', desc: 'البرمجة حرفة فنية تتطلب الدقة. البساطة الظاهرة تخفي تعقيداً هندسياً مدروساً.' }
+                        { title: 'الالتزام بالاستقلال', desc: 'نحن هنا لنصنع الفارق بشروطنا. استقلاليتنا المطلقة تمنحنا الجرأة لنبتكر بشغف، ونجازف حيث يتراجع الآخرون.' },
+                        { title: 'الفرق الصغيرة', desc: 'نؤمن بأن الإنجازات العظيمة لا تتطلب جيوشاً من الموظفين، بل عقولاً ذكية ومركزة. الأقل غالباً ما يعني الأفضل.' },
+                        { title: 'نحن لا نبيع بياناتك', desc: 'نحن نرفض بشكل قاطع المتاجرة بمعلومات عملائنا أو استغلالها لغايات إعلانية. نحن نبني أدوات احترافية، وأنت تدفع مقابل استخدامها.' },
+                        { title: 'ملايين الشركات', desc: 'شغفنا الحقيقي ينصب على ملايين الشركات الصغيرة والمتوسطة في الوطن العربي. نحن هنا للوقوف بجانبهم.' },
+                        { title: 'لا تستنسخ بيئة المكتب', desc: 'العمل عن بُعد لا يعني أن تنقل روتين المكتب. اعتمد التواصل غير المتزامن لتعطي فريقك مساحة للإبداع والتركيز.' },
+                        { title: 'الساعات ليست متساوية', desc: 'الستون دقيقة المتواصلة تصنع إنجازاً مبهراً. العمل المتواصل هو مفتاح الجودة والإبداع الحقيقي.' },
+                        { title: 'فخ التكرار', desc: 'الروتين الأعمى لا يصنع التقدم. الذكاء يكمن في ابتكار حلول تغير النتائج وتمنحك وقتك وحريتك.' },
+                        { title: 'الاجتماعات ليست مجانية', desc: 'الاجتماع يجب أن يكون دائماً الملاذ الأخير. لا نعقد الاجتماعات إلا عندما تكون حتمية وعائدها استثنائياً.' },
+                        { title: 'فخ التفكير الهامشي', desc: 'التردد في الاستثمار بالأدوات الصحيحة هو أغلى تكلفة قد تدفعها. نحن نستثمر بلا تردد في التقنيات التي تضاعف إنتاجيتنا.' },
+                        { title: 'شركات صامدة', desc: 'نحن ننحاز للشركات الصامدة (Stayups) التي أثبتت قيمتها الحقيقية. فخورون بأن عام 2026 يمثل عامنا الرابع.' },
+                        { title: 'رؤية عالمية', desc: 'نحن نبني منتجات بمعايير عالمية تنافس محلياً ودولياً. وجهة نظرنا بُنيت على وعي شامل يمنحنا فهماً أعمق.' },
+                        { title: 'لعنة سوء التواصل', desc: 'الشركات تعاني من التخمة في "سوء التواصل". نحن نضع ثقتنا في الفرق الصغيرة والتواصل المكتوب بوضوح قاطع.' },
+                        { title: 'فخ الـ "سهل"', desc: 'نحن نحترم تعقيد كل دور ونمنح كل تفصيلة وزنها الحقيقي، لأن النجاح الاستثنائي لا يُبنى أبداً على تهميش الآخرين.' },
+                        { title: 'الشركات ليست عائلات', desc: 'الشركات العظيمة ليست عائلات بديلة، بل هي حليف لعائلتك. وقتك خارج العمل هو ملكك بالكامل.' },
+                        { title: 'رؤية 2030', desc: 'نحن لا نبني برمجيات فقط؛ بل نبني مستقبلاً يليق بطموح السعودية، نؤمن أن العبقرية السعودية تتفوق عالمياً.' },
+                        { title: 'حرفة رقمية', desc: 'نحن لا نرى البرمجة مجرد أكواد، بل حرفة فنية تتطلب الدقة. البساطة الظاهرة تخفي خلفها تعقيداً هندسياً.' }
                     ]
                 },
                 en: {
                     dir: 'ltr',
                     nav: { home: 'Home', policies: 'Policies', privacy: 'Privacy', switch: 'عربي' },
-                    hero: { title: 'SNDRY Portal', subtitle: 'Unified Platform for Digital Services & Business Solutions' },
+                    hero: { title: 'SNDRY Platform', subtitle: 'Unified Platform for Digital Services & Business Solutions' },
                     cards: [
-                        { id: 'pos', title: 'SNDRY POS', type: 'Business | Retail', desc: 'Smart POS system designed for the Egyptian market. Supports local transactions.', btn: 'Explore Platform →', active: true, link: 'https://pos.sndry.net' },
-                        { id: 'erp', title: 'SNDRY ERP', type: 'Enterprise | Resources', desc: 'Integrated system for managing operations and tracking departments professionally.', active: false, link: 'https://erp.sndry.net' },
-                        { id: 'sami', title: 'SAMI AI', type: 'Marketing | AI', desc: 'Your smart marketing assistant to create campaigns, analyze competitors, and schedule.', active: false, link: 'https://sami.sndry.net' }
+                        { id: 'pos', title: 'SNDRY POS', type: 'Business | Retail', desc: 'A smart point-of-sale system designed specifically for the Egyptian market, with full support for local transactions.', btn: 'Explore Platform →', active: true, link: 'https://pos.sndry.net', img: './pos.png' },
+                        { id: 'erp', title: 'SNDRY ERP', type: 'Enterprise | Resources', desc: 'An integrated system for managing resources and operations within companies from one place.', active: false, link: 'https://erp.sndry.net', img: './logo_dark.png' },
+                        { id: 'sami', title: 'SAMI AI', type: 'Individuals | Marketing', desc: 'Your intelligent marketing assistant. It generates campaigns, analyzes competitors, and protects your budget.', active: false, link: 'https://sami.sndry.net', img: './sami-logo-dark.png' }
                     ],
-                    phiTitle: 'Core Principles & Philosophy',
+                    phiTitle: 'Core E-Services & Principles',
                     philosophy: [
                         { title: 'Commitment to Independence', desc: 'Our absolute freedom gives us the audacity to build with passion and prioritize your success.' },
                         { title: 'Small Teams', desc: 'Big impact requires sharp, focused minds. Less is often more effective without friction.' },
@@ -170,14 +178,13 @@
             return (
                 <div dir={t.dir} className="min-h-screen flex flex-col">
                     
-                    {/* Header - (يحاكي هيدر ناجز بالضبط) */}
-                    <header className="bg-white shadow-sm h-20 sticky top-0 z-50">
+                    {/* الهيدر زي ناجز */}
+                    <header className="bg-white shadow-sm h-16 md:h-20 sticky top-0 z-50">
                         <div className="max-w-7xl mx-auto px-4 h-full flex justify-between items-center">
                             
-                            {/* Logo & Main Nav */}
-                            <div className="flex items-center h-full gap-8">
+                            <div className="flex items-center h-full gap-4 md:gap-8">
                                 <a href="#" className="flex-shrink-0">
-                                    <img src="./sndry-logo-d.png" alt="SNDRY" className="h-8" />
+                                    <img src="./sndry-logo-d.png" alt="SNDRY" className="h-6 md:h-8" />
                                 </a>
                                 
                                 <nav className="hidden md:flex h-full items-center text-sm">
@@ -187,57 +194,61 @@
                                 </nav>
                             </div>
 
-                            {/* Actions */}
-                            <div className="flex items-center gap-4">
+                            <div className="flex items-center gap-2 md:gap-4">
+                                {/* روابط الموبايل */}
+                                <div className="flex md:hidden gap-3 text-[10px] font-bold text-gray-500">
+                                    <a href="policies.html">{t.nav.policies}</a>
+                                    <a href="privacy.html">{t.nav.privacy}</a>
+                                </div>
+
                                 <button 
                                     onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')}
-                                    className="text-sm font-bold text-gray-600 hover:text-[#047857] flex items-center gap-2 px-4 py-2 rounded-md hover:bg-gray-50 transition-colors"
+                                    className="text-xs md:text-sm font-bold text-gray-600 hover:text-[#047857] flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors"
                                 >
-                                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                                    <svg className="w-4 h-4 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
                                     {t.nav.switch}
                                 </button>
                             </div>
-
                         </div>
                     </header>
 
-                    {/* Hero Section */}
-                    <section className="relative pt-24 pb-48 bg-white overflow-hidden">
+                    {/* الهيرو */}
+                    <section className="relative pt-20 pb-40 md:pt-24 md:pb-48 bg-white overflow-hidden">
                         <div className="hero-pattern"></div>
                         <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-                            <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-6 tracking-tight">
+                            <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 tracking-tight">
                                 {t.hero.title}
                             </h1>
-                            <p className="text-xl md:text-2xl text-gray-600 font-medium">
+                            <p className="text-lg md:text-2xl text-gray-600 font-medium">
                                 {t.hero.subtitle}
                             </p>
                         </div>
                     </section>
 
-                    {/* Cards Section - متداخلة مع الهيرو */}
-                    <section className="max-w-6xl mx-auto px-4 -mt-32 relative z-20 mb-20">
+                    {/* الكروت المتداخلة */}
+                    <section className="max-w-6xl mx-auto px-4 -mt-24 md:-mt-32 relative z-20 mb-20">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
                             {t.cards.map((card, idx) => (
                                 <div key={idx} className={`service-card ${card.active ? 'active-card md:-mt-4 md:mb-4' : ''}`}>
                                     <div>
                                         <img 
-                                            src={card.id === 'pos' ? './sndry-pos.png' : card.id === 'erp' ? './sndry-erp.png' : './sami.png'} 
+                                            src={card.img} 
                                             alt={card.title} 
-                                            className="h-14 mx-auto mb-6 object-contain grayscale opacity-80 hover:grayscale-0 transition-all"
+                                            className="h-10 md:h-14 mx-auto mb-6 object-contain grayscale opacity-80 hover:grayscale-0 transition-all"
                                             onError={(e) => { e.target.style.display='none' }}
                                         />
-                                        <div className="text-[11px] font-bold text-[#047857] mb-2 uppercase tracking-wider">{card.type}</div>
-                                        <h3 className="text-2xl font-black text-gray-900 mb-3">{card.title}</h3>
-                                        <p className="text-sm text-gray-500 leading-relaxed font-medium px-2">{card.desc}</p>
+                                        <div className="text-[10px] md:text-[11px] font-bold text-[#047857] mb-2 uppercase tracking-wider">{card.type}</div>
+                                        <h3 className="text-xl md:text-2xl font-black text-gray-900 mb-3">{card.title}</h3>
+                                        <p className="text-xs md:text-sm text-gray-500 leading-relaxed font-medium px-2">{card.desc}</p>
                                     </div>
                                     
                                     <div className="mt-8">
                                         {card.active ? (
-                                            <a href={card.link} target="_blank" className="block w-full bg-[#047857] hover:bg-[#036046] text-white py-3.5 rounded-lg font-bold text-sm transition-colors">
+                                            <a href={card.link} target="_blank" className="block w-full bg-[#047857] hover:bg-[#036046] text-white py-3 md:py-3.5 rounded-lg font-bold text-xs md:text-sm transition-colors shadow-md">
                                                 {card.btn}
                                             </a>
                                         ) : (
-                                            <a href={card.link} target="_blank" className="block w-full bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200 py-3.5 rounded-lg font-bold text-sm transition-colors">
+                                            <a href={card.link} target="_blank" className="block w-full bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200 py-3 md:py-3.5 rounded-lg font-bold text-xs md:text-sm transition-colors">
                                                 {lang === 'ar' ? 'عرض التفاصيل' : 'View Details'}
                                             </a>
                                         )}
@@ -247,31 +258,30 @@
                         </div>
                     </section>
 
-                    {/* Philosophy Grid Section - أبرز الخدمات/المبادئ */}
-                    <section className="bg-gray-50 flex-grow pt-20 pb-24 border-t border-gray-200">
+                    {/* المبادئ */}
+                    <section className="bg-gray-50 flex-grow pt-16 pb-20 md:pt-20 md:pb-24 border-t border-gray-200">
                         <div className="max-w-7xl mx-auto px-4">
-                            <div className="flex justify-between items-center mb-12">
-                                <h2 className="text-3xl font-black text-gray-900">{t.phiTitle}</h2>
-                                <span className="hidden md:inline-block px-4 py-2 bg-white border border-gray-200 rounded-md text-sm font-bold text-gray-500">
+                            <div className="flex justify-between items-center mb-8 md:mb-12">
+                                <h2 className="text-2xl md:text-3xl font-black text-gray-900">{t.phiTitle}</h2>
+                                <span className="hidden md:inline-block px-4 py-2 bg-white border border-gray-200 rounded-md text-sm font-bold text-gray-500 shadow-sm">
                                     16 Principle
                                 </span>
                             </div>
 
-                            {/* شبكة المبادئ الـ 16 */}
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
                                 {t.philosophy.map((phi, idx) => (
                                     <div key={idx} className="phi-grid-card hover:-translate-y-1 transition-transform">
-                                        <h4 className="font-bold text-gray-900 mb-2 text-lg">{phi.title}</h4>
-                                        <p className="text-xs text-gray-500 leading-relaxed font-medium">{phi.desc}</p>
+                                        <h4 className="font-bold text-gray-900 mb-2 text-base md:text-lg">{phi.title}</h4>
+                                        <p className="text-[11px] md:text-xs text-gray-500 leading-relaxed font-medium">{phi.desc}</p>
                                     </div>
                                 ))}
                             </div>
                         </div>
                     </section>
 
-                    {/* Footer */}
+                    {/* الفوتر */}
                     <footer className="bg-white border-t border-gray-200 py-8 text-center">
-                        <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">
+                        <p className="text-[10px] md:text-xs font-bold text-gray-400 uppercase tracking-widest">
                             © 2026 SNDRY GROUP. All Rights Reserved.
                         </p>
                     </footer>
