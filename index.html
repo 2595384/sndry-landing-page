@@ -549,89 +549,166 @@
 
                     {/* الفوتر */}
                    {/* الفوتر المؤسسي (تصميم ناجز) */}
-<footer className="bg-[#f8f9fa] border-t border-gray-200 pt-16 pb-8 mt-20 relative z-10">
-    <div className="max-w-7xl mx-auto px-4 md:px-8">
-        
-        {/* الأعمدة الأربعة */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
-            {/* العمود الأول */}
-            <div>
-                <h3 className="text-gray-900 font-black text-sm md:text-base mb-6">{t.footer.col1}</h3>
-                <ul className="space-y-4 text-xs md:text-sm text-gray-500 font-medium">
-                    {t.footer.links1.map((link, i) => (
-                        <li key={i}><a href="#" className="hover:text-[#047857] transition-colors">{link}</a></li>
-                    ))}
-                </ul>
-            </div>
-            
-            {/* العمود الثاني */}
-            <div>
-                <h3 className="text-gray-900 font-black text-sm md:text-base mb-6">{t.footer.col2}</h3>
-                <ul className="space-y-4 text-xs md:text-sm text-gray-500 font-medium">
-                    {t.footer.links2.map((link, i) => (
-                        <li key={i}><a href="#" className="hover:text-[#047857] transition-colors flex items-center gap-2">
-                            {link}
-                            <svg className="w-3 h-3 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                        </a></li>
-                    ))}
-                </ul>
-            </div>
+ <footer className="bg-slate-950 pt-20 relative overflow-hidden border-t border-slate-800/50">
 
-            {/* العمود الثالث */}
-            <div>
-                <h3 className="text-gray-900 font-black text-sm md:text-base mb-6">{t.footer.col3}</h3>
-                <ul className="space-y-4 text-xs md:text-sm text-gray-500 font-medium">
-                    {t.footer.links3.map((link, i) => (
-                        <li key={i}><a href={i === 1 ? 'mailto:info@sndry.net' : '#'} className="hover:text-[#047857] transition-colors">{link}</a></li>
-                    ))}
-                </ul>
-            </div>
+    {/* إضاءات محيطية في الخلفية */}
+    <div className="absolute top-0 right-0 w-full h-full overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[120px]"></div>
+        <div className="absolute bottom-0 -left-40 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[120px]"></div>
+        <div className="absolute inset-0 opacity-[0.02] bg-[linear-gradient(to_right,#ffffff_1px,transparent_1px),linear-gradient(to_bottom,#ffffff_1px,transparent_1px)] bg-[size:32px_32px]"></div>
+    </div>
 
-            {/* العمود الرابع (السوشيال ميديا) */}
-            <div>
-                <h3 className="text-gray-900 font-black text-sm md:text-base mb-6">{t.footer.col4}</h3>
-                <div className="flex gap-4">
-                    {/* LinkedIn */}
-                    <a href="#" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-[#047857] hover:border-[#047857] hover:text-white transition-all">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                    </a>
-                    {/* X (Twitter) */}
-                    <a href="#" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-[#047857] hover:border-[#047857] hover:text-white transition-all">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                    </a>
-                    {/* Instagram */}
-                    <a href="#" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-[#047857] hover:border-[#047857] hover:text-white transition-all">
-                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.20 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                    </a>
-                </div>
+    <div dir={isRtl ? 'rtl' : 'ltr'} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        {/* صندوق الدعوة لاتخاذ إجراء (CTA) */}
+        <div className="relative bg-gradient-to-br from-slate-900 to-slate-800 border border-slate-700/50 rounded-[2.5rem] p-10 lg:p-14 text-center lg:text-start flex flex-col lg:flex-row items-center justify-between gap-10 shadow-2xl shadow-emerald-900/20 transform -translate-y-12 overflow-hidden group">
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:animate-[shimmer_2s_infinite]"></div>
+
+            <div className="max-w-2xl relative z-10">
+                <h2 className="text-3xl md:text-4xl font-black text-white mb-4 leading-tight">{t.ctaTitle}</h2>
+                <p className="text-slate-400 text-lg font-medium">{t.ctaDesc}</p>
+            </div>
+            <div className="flex-shrink-0 relative z-10">
+                <a href="/register" className="bg-emerald-500 text-slate-950 px-8 py-4 rounded-2xl text-lg font-black flex items-center gap-3 hover:bg-emerald-400 hover:scale-105 transition-all shadow-[0_0_20px_rgba(16,185,129,0.3)]">
+                    {t.btnSubscribe} <ArrowIcon className="w-5 h-5" />
+                </a>
             </div>
         </div>
 
-        {/* الشريط السفلي (الحقوق والشعارات) */}
-        <div className="border-t border-gray-200 pt-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+        {/* شبكة ناجز المؤسسية (4 أعمدة) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mt-8 mb-16">
+
+            {/* العمود الأول: عن المنصة والسوشيال ميديا */}
+            <div>
+                <h3 className="text-white font-black text-sm md:text-base mb-6">{isRtl ? 'عن المنصة' : 'About Platform'}</h3>
+                <p className="text-slate-400 font-medium leading-relaxed mb-6 text-xs md:text-sm">{t.footerDesc}</p>
+                
+                {/* السوشيال ميديا (ستايل ناجز الدائري) */}
+                <div className="flex flex-wrap gap-3">
+                    <a href="https://www.linkedin.com/company/sndry/" target="_blank" rel="noopener noreferrer" 
+                       className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-emerald-500 hover:border-emerald-500 hover:text-white transition-all">
+                        <Linkedin className="w-4 h-4" />
+                    </a>
+                    <a href="https://www.instagram.com/sndrygroup" target="_blank" rel="noopener noreferrer" 
+                       className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-emerald-500 hover:border-emerald-500 hover:text-white transition-all">
+                        <Instagram className="w-4 h-4" />
+                    </a>
+                    <a href="https://x.com/sndrygroup" target="_blank" rel="noopener noreferrer"
+                        className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-emerald-500 hover:border-emerald-500 hover:text-white transition-all">
+                        <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" /></svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@sndrygroup" target="_blank" rel="noopener noreferrer"
+                        className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-emerald-500 hover:border-emerald-500 hover:text-white transition-all">
+                        <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47V14.5c0 1.94-.52 3.88-1.64 5.38-1.15 1.54-2.88 2.58-4.78 2.91-1.93.33-4.04-.01-5.69-1.07-1.74-1.11-2.91-3.04-3.13-5.09-.22-2.12.5-4.29 1.96-5.85 1.48-1.58 3.65-2.45 5.79-2.34v4.04c-.99-.1-2.03.18-2.82.8-.75.61-1.17 1.58-1.13 2.55.02.99.49 1.94 1.3 2.5 1 .71 2.37.76 3.42.13.88-.53 1.41-1.52 1.41-2.54V0z" /></svg>
+                    </a>
+                    <a href="https://www.threads.com/@sndrygroup" target="_blank" rel="noopener noreferrer" 
+                       className="w-10 h-10 rounded-full border border-slate-700 flex items-center justify-center text-slate-400 hover:bg-emerald-500 hover:border-emerald-500 hover:text-white transition-all">
+                        <AtSign className="w-4 h-4" />
+                    </a>
+                </div>
+            </div>
+
+            {/* العمود الثاني: روابط مهمة */}
+            <div>
+                <h3 className="text-white font-black text-sm md:text-base mb-6">{t.links || (isRtl ? 'روابط مهمة' : 'Important Links')}</h3>
+                <ul className="space-y-4">
+                    {['home', 'modules', 'pricing', 'login'].map((item) => (
+                        <li key={item}>
+                            <a href={`/${item === 'home' ? '#home' : item}`} className="text-slate-400 hover:text-emerald-400 transition-colors font-medium text-xs md:text-sm flex items-center gap-2 group">
+                                <ChevronIcon className="w-3 h-3 opacity-50 rtl:rotate-180 transition-all" />
+                                {t[item]}
+                            </a>
+                        </li>
+                    ))}
+                    <li>
+                        <a href="mailto:info@sndry.net" className="text-slate-400 hover:text-emerald-400 transition-colors font-medium text-xs md:text-sm flex items-center gap-2">
+                            <Send className="w-3 h-3 opacity-50 rtl:rotate-180" /> info@sndry.net
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            {/* العمود الثالث: منصات أخرى */}
+            <div>
+                <h3 className="text-white font-black text-sm md:text-base mb-6">{isRtl ? 'منصات أخرى' : 'Our Platforms'}</h3>
+                <div className="flex flex-col gap-3">
+                    {/* منصة SAMI */}
+                    <a href="https://sami.sndry.net" target="_blank" rel="noreferrer" className="group flex items-center gap-3 bg-slate-900/50 hover:bg-slate-800 border border-slate-800 hover:border-emerald-500/50 rounded-xl p-2 transition-all">
+                        <div className="w-10 h-10 rounded-lg bg-white p-1 flex items-center justify-center shrink-0 shadow-inner">
+                            <img src="/images/sami.png" alt="SAMI" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                        </div>
+                        <div>
+                            <h5 className="text-slate-200 font-bold text-xs group-hover:text-emerald-400 transition-colors uppercase tracking-wider">SAMI AI</h5>
+                            <p className="text-slate-500 text-[10px]">{isRtl ? 'مساعدك التسويقي الذكي' : 'AI Marketing Assistant'}</p>
+                        </div>
+                    </a>
+
+                    {/* منصة POS */}
+                    <a href="https://pos.sndry.net" target="_blank" rel="noreferrer" className="group flex items-center gap-3 bg-slate-900/50 hover:bg-slate-800 border border-slate-800 hover:border-indigo-500/50 rounded-xl p-2 transition-all">
+                        <div className="w-10 h-10 rounded-lg bg-white p-1 flex items-center justify-center shrink-0 shadow-inner">
+                            <img src="/images/pos.png" alt="Sndry POS" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                        </div>
+                        <div>
+                            <h5 className="text-slate-200 font-bold text-xs group-hover:text-indigo-400 transition-colors uppercase tracking-wider">SNDRY POS</h5>
+                            <p className="text-slate-500 text-[10px]">{isRtl ? 'نظام نقاط البيع' : 'Point of Sale System'}</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            {/* العمود الرابع: متوافق مع */}
+            <div>
+                <h3 className="text-white font-black text-sm md:text-base mb-6">{isRtl ? 'متوافق مع' : 'Compatible with'}</h3>
+                <div className="grid grid-cols-2 gap-3">
+                    {[
+                        { src: '/images/ZATCA-logo.png', alt: 'هيئة الزكاة والضريبة والجمارك' },
+                        { src: '/images/uae_fta_logo.png', alt: 'الهيئة الاتحادية للضرائب' },
+                        { src: '/images/new-logo.png', alt: 'مصلحة الضرائب المصرية' },
+                        { src: '/images/Fatoora.png', alt: 'فاتورة', scale: 'scale-125' }
+                    ].map((logo, index) => (
+                        <div key={index} className="bg-slate-900/50 backdrop-blur-sm rounded-lg p-2 flex items-center justify-center transition-transform hover:scale-105 border border-slate-800 h-12">
+                            <img src={logo.src} alt={logo.alt} className={`h-full w-full object-contain ${logo.scale || ''} brightness-0 invert opacity-70 hover:opacity-100 transition-opacity`} onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+        </div>
+
+        {/* شريط الحقوق السفلي (ستايل ناجز المؤسسي) */}
+        <div className="border-t border-slate-800/60 py-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
             
             {/* روابط الخصوصية وحقوق النشر */}
             <div className="flex flex-col gap-3">
-                <div className="flex gap-6 text-[13px] font-black text-gray-700">
-                    <a href="policies.html" className="hover:text-[#047857] transition-colors">{t.footer.terms}</a>
-                    <a href="privacy.html" className="hover:text-[#047857] transition-colors">{t.footer.privacy}</a>
+                <div className="flex gap-6 text-[13px] font-black text-slate-300">
+                    <a href={getSafeLocalizedPath('/terms-and-conditions')} className="hover:text-emerald-400 transition-colors">{isRtl ? 'الشروط والأحكام' : 'Terms & Conditions'}</a>
+                    <a href={getSafeLocalizedPath('/privacy-policy')} className="hover:text-emerald-400 transition-colors">{isRtl ? 'سياسة الخصوصية' : 'Privacy Policy'}</a>
+                    <a href={getSafeLocalizedPath('/refund-policy')} className="hover:text-emerald-400 transition-colors">{isRtl ? 'سياسة الاسترجاع' : 'Refund Policy'}</a>
                 </div>
-                <p className="text-xs text-gray-500 font-medium">{t.footer.rights}</p>
-                <p className="text-[10px] text-gray-400 font-bold">{t.footer.lastUpdate}</p>
+                <p className="text-xs text-slate-500 font-medium">{t.rights}</p>
+                <div className="flex items-center gap-2 text-slate-600 text-[10px] font-medium mt-1">
+                    Made with <Heart className="w-3 h-3 text-rose-500 fill-rose-500 animate-pulse" /> by Sndry Tech
+                </div>
             </div>
 
             {/* الشعارات (رؤية 2030 ولوجو SNDRY) */}
             <div className="flex items-center gap-6">
-                <div className="text-left" dir="ltr">
-                    <div className="text-[9px] text-gray-400 font-black uppercase tracking-widest mb-1">Aligned with</div>
-                    <div className="text-xl font-black text-gray-300 tracking-tighter hover:text-[#047857] transition-colors cursor-default">VISION 2030</div>
+                <div className={`text-left ${isRtl ? 'rtl:text-right' : ''}`} dir="ltr">
+                    <div className="text-[9px] text-slate-500 font-black uppercase tracking-widest mb-1">Aligned with</div>
+                    <div className="text-xl font-black text-slate-300 tracking-tighter hover:text-emerald-400 transition-colors cursor-default">VISION 2030</div>
                 </div>
-                <div className="w-px h-10 bg-gray-300"></div>
-                <img src="./sndry-logo-d.png" alt="SNDRY" className="h-7 md:h-8 grayscale opacity-50 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer" />
+                <div className="w-px h-10 bg-slate-800"></div>
+                <img src="/images/logo_dark.png" alt="SNDRY" className="h-7 md:h-8 brightness-0 invert opacity-50 hover:opacity-100 transition-all cursor-pointer" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
             </div>
 
         </div>
     </div>
+
+    <style>{`
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+    `}</style>
 </footer>
 
                 </div>
