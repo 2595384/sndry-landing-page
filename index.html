@@ -15,8 +15,9 @@
     <meta property="og:type" content="website">
 
     <!-- الفافيكون -->
-    <link rel="icon" type="image/png" href="./favicon.png">
-    <link rel="apple-touch-icon" href="./favicon.png">
+    <!-- الفافيكون -->
+    <link rel="icon" type="image/png" href="./v.png">
+    <link rel="apple-touch-icon" href="./v.png">
 
     <!-- الخطوط والمكتبات -->
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap" rel="stylesheet">
@@ -131,6 +132,66 @@
 @keyframes floatOrb {
     0% { transform: translate(0, 0) scale(1); }
     100% { transform: translate(40px, -40px) scale(1.1); }
+}
+
+
+/* تأثير ظهور زر البطاقة عند التمرير */
+.card-btn-wrapper {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.service-card:hover .card-btn-wrapper {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* أمان للموبايل: إظهار الزر دائماً لأن الموبايل لا يدعم الـ Hover */
+@media (max-width: 768px) {
+    .card-btn-wrapper { opacity: 1; transform: translateY(0); }
+}
+
+/* تنسيق المبادئ الاحترافي (Watermark & Glow) */
+.phi-grid-card {
+    background: #ffffff;
+    padding: 2rem 1.5rem;
+    border-radius: 16px;
+    border: 1px solid #f3f4f6;
+    border-right: 4px solid #047857;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 1;
+}
+.phi-grid-card::after {
+    content: '';
+    position: absolute;
+    top: 0; bottom: 0; right: 0; width: 0;
+    background: linear-gradient(to left, rgba(4,120,87,0.04), transparent);
+    z-index: -1;
+    transition: width 0.5s ease;
+}
+.phi-grid-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(4,120,87,0.08);
+}
+.phi-grid-card:hover::after {
+    width: 100%;
+}
+/* الرقم المائي الخلفي للمبادئ */
+.phi-number {
+    position: absolute;
+    top: -5px;
+    left: 15px; /* يظهر على اليسار كخلفية */
+    font-size: 5rem;
+    font-weight: 900;
+    color: rgba(0,0,0,0.03);
+    z-index: -1;
+    transition: color 0.5s ease, transform 0.5s ease;
+}
+.phi-grid-card:hover .phi-number {
+    color: rgba(4,120,87,0.08);
+    transform: scale(1.1) rotate(-5deg);
 }
     </style>
 </head>
@@ -252,7 +313,7 @@
                     </header>
 
                     {/* الهيرو */}
-                    {}
+                    
                 <section className="relative pt-20 pb-40 md:pt-24 md:pb-48 bg-white overflow-hidden">
                     
                     {/* الكرات المضيئة المتحركة */}
@@ -290,7 +351,7 @@
                                         <p className="text-xs md:text-sm text-gray-500 leading-relaxed font-medium px-2">{card.desc}</p>
                                     </div>
                                     
-                                    <div className="mt-8">
+                                    <div className="mt-8 card-btn-wrapper">
                                         {card.active ? (
                                             <a href={card.link} target="_blank" className="block w-full bg-[#047857] hover:bg-[#036046] text-white py-3 md:py-3.5 rounded-lg font-bold text-xs md:text-sm transition-colors shadow-md">
                                                 {card.btn}
@@ -308,22 +369,19 @@
 
                     {/* المبادئ */}
                     <section className="bg-gray-50 flex-grow pt-16 pb-20 md:pt-20 md:pb-24 border-t border-gray-200">
-                        <div className="max-w-7xl mx-auto px-4">
-                            <div className="flex justify-between items-center mb-8 md:mb-12">
-                                <h2 className="text-2xl md:text-3xl font-black text-gray-900">{t.phiTitle}</h2>
-                                <span className="hidden md:inline-block px-4 py-2 bg-white border border-gray-200 rounded-md text-sm font-bold text-gray-500 shadow-sm">
-                                    16 Principle
-                                </span>
-                            </div>
-
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                                {t.philosophy.map((phi, idx) => (
-                                    <div key={idx} className="phi-grid-card hover:-translate-y-1 transition-transform">
-                                        <h4 className="font-bold text-gray-900 mb-2 text-base md:text-lg">{phi.title}</h4>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                            {t.philosophy.map((phi, idx) => {
+                                // إنشاء رقم بصيغة 01, 02, 03
+                                const num = (idx + 1).toString().padStart(2, '0');
+                                
+                                return (
+                                    <div key={idx} className="phi-grid-card">
+                                        <span className="phi-number">{num}</span>
+                                        <h4 className="font-bold text-gray-900 mb-3 text-base md:text-lg">{phi.title}</h4>
                                         <p className="text-[11px] md:text-xs text-gray-500 leading-relaxed font-medium">{phi.desc}</p>
                                     </div>
-                                ))}
-                            </div>
+                                );
+                            })}
                         </div>
                     </section>
 
