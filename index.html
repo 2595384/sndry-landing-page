@@ -217,20 +217,20 @@
     <div id="root"></div>
 
    <script type="module">
-    import React, { useState, useEffect } from 'https://esm.sh/react@18';
+    import React from 'https://esm.sh/react@18';
     import ReactDOM from 'https://esm.sh/react-dom@18/client';
 
-        function PortalApp() {
-            // حفظ السيشن للغة
-            const [lang, setLang] = useState(() => localStorage.getItem('sndry_lang') || 'ar');
-            const [activeCategory, setActiveCategory] = useState('all');
-            const [openFaq, setOpenFaq] = useState(null);
+    // نستخدم React.useState و React.useEffect مباشرة بدون إعلان مكرر
+    function PortalApp() {
+        const [lang, setLang] = React.useState(() => localStorage.getItem('sndry_lang') || 'ar');
+        const [activeCategory, setActiveCategory] = React.useState('all');
+        const [openFaq, setOpenFaq] = React.useState(null);
 
-            useEffect(() => {
-                localStorage.setItem('sndry_lang', lang);
-                document.documentElement.lang = lang;
-                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            }, [lang]);
+        React.useEffect(() => {
+            localStorage.setItem('sndry_lang', lang);
+            document.documentElement.lang = lang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+        }, [lang]);
 
             // المحتوى من ملفك القديم بالحرف وبنفس مسارات الصور!
             const content = {
