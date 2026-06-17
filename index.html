@@ -62,28 +62,18 @@
 
             const t = lang === 'ar' ? content.ar : content.en;
 
-            return (
-                <div dir={t.dir} className="min-h-screen">
-                    <header className="bg-white shadow-sm h-20 sticky top-0 z-50">
-                        <div className="max-w-7xl mx-auto px-4 h-full flex justify-between items-center">
-                            <img src="/sndry-logo-d.png" className="h-10" alt="Logo" />
-                            <button onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')} className="bg-black text-white px-6 py-2 rounded-full text-xs font-bold">{t.nav.switch}</button>
-                        </div>
-                    </header>
-                    <main>
-                        <section className="py-20 text-center relative">
-                            <div className="blobs-wrapper"><div className="blob blob-1"></div><div className="blob blob-2"></div></div>
-                            <h1 className="text-5xl font-black">{t.hero.title}</h1>
-                            <p className="mt-4 text-xl text-gray-600">{t.hero.subtitle}</p>
-                        </section>
-                        <section className="max-w-6xl mx-auto px-4 -mt-20 grid grid-cols-1 md:grid-cols-3 gap-8">
-                            {t.cards.map((c, i) => (
-                                <div key={i} className="service-card"><h3 className="text-2xl font-black">{c.title}</h3><p className="text-sm">{c.desc}</p><a href={c.link} className="bg-green-700 text-white py-2 mt-4 block rounded">{c.btn}</a></div>
-                            ))}
-                        </section>
-                    </main>
-                </div>
-            );
+            // استبدل الـ return اللي عندك بالكود ده (مثال بسيط):
+return React.createElement('div', { dir: t.dir, className: 'min-h-screen' },
+    React.createElement('header', { className: 'bg-white shadow-sm h-20 sticky top-0 z-50' },
+        React.createElement('div', { className: 'max-w-7xl mx-auto px-4 h-full flex justify-between items-center' },
+            React.createElement('img', { src: './sndry-logo-d.png', className: 'h-10' }),
+            React.createElement('button', { 
+                onClick: () => setLang(lang === 'ar' ? 'en' : 'ar'),
+                className: 'bg-black text-white px-6 py-2 rounded-full text-xs font-bold' 
+            }, t.nav.switch)
+        )
+    )
+);
         }
 
         ReactDOM.createRoot(document.getElementById('root')).render(<PortalApp />);
