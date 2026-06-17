@@ -1,23 +1,17 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SNDRY GROUP | بوابتك للتحول الرقمي</title>
-    
     <meta name="description" content="مجموعة SNDRY - منصات رقمية احترافية تشمل نظام SNDRY POS لنقاط البيع في مصر، ونظام SNDRY ERP لإدارة الموارد، ومساعد SAMI AI التسويقي.">
     <meta name="keywords" content="نظام نقاط بيع, POS مصر, نظام ERP, إدارة الفعاليات, مساعد تسويق ذكي, SNDRY, تقنية سعودية">
     <meta name="author" content="SNDRY GROUP">
 
     <meta property="og:title" content="SNDRY GROUP | بوابتك للتحول الرقمي">
     <meta property="og:description" content="اكتشف منصات SNDRY: نقاط بيع ذكية، أنظمة ERP متكاملة، ومساعد تسويقي بالذكاء الاصطناعي.">
-    <meta property="og:image" content="./sndry-logo-d.png">
-    <meta property="og:url" content="https://sndry.net">
+    <meta property="og:image" content="https://sndry.net/sndry-logo-d.png"> <meta property="og:url" content="https://sndry.net">
     <meta property="og:type" content="website">
-
-    <link rel="icon" type="image/png" href="./favicon.png">
-    <link rel="apple-touch-icon" href="./favicon.png">
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNDRY GROUP | 2026</title>
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;900&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -27,91 +21,196 @@
     <style>
         body {
             font-family: 'Tajawal', sans-serif;
-            margin: 0;
-            overflow: hidden; /* No Scroll */
-            background-color: #ffffff;
+            background-color: #f8f9fa; /* خلفية ناجز */
             color: #1a1a1a;
+            margin: 0;
+            overflow-x: hidden;
         }
 
-        .bg-canvas {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            z-index: -1; pointer-events: none; opacity: 0.15;
-            transition: background 1s ease;
+        /* خلفية النقط (Dotted Background) */
+        .hero-pattern {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(#d1d5db 2px, transparent 2px);
+            background-size: 24px 24px;
+            opacity: 0.4;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 70%);
+            z-index: 0;
         }
 
-        .slide-container {
-            display: flex; align-items: center; justify-content: center;
-            height: 100vh; width: 100vw;
-            /* مسافات محسوبة بدقة للموبايل والديسكتوب */
-            padding: 100px 8% 80px; 
+        /* الهيدر */
+        .nav-item {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 0 1.5rem;
+            font-weight: 700;
+            transition: all 0.2s ease;
+        }
+        .nav-item.active {
+            background-color: #047857; /* لون أخضر ناجز */
+            color: white;
+        }
+        .nav-item:not(.active):hover { color: #047857; }
+
+        /* كروت الخدمات */
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.03);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        .service-card.active-card {
+            border-top: 4px solid #047857;
+            transform: scale(1.02);
+            box-shadow: 0 20px 50px rgba(4,120,87,0.1);
         }
 
-        .animate-slide-up {
-            animation: slideUpFade 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        /* كروت الفلسفة (الـ 16 نقطة) */
+        .phi-grid-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-right: 3px solid #047857;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.02);
         }
 
-        @keyframes slideUpFade {
-            0% { opacity: 0; transform: translateY(30px) scale(0.98); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
-        }
+                    /* تأثير الكرات المضيئة (Glowing Blobs) في الهيرو */
+            .blobs-wrapper {
+                position: absolute;
+                inset: 0;
+                overflow: hidden;
+                z-index: 0;
+                pointer-events: none;
+            }
+            .blob {
+                position: absolute;
+                border-radius: 50%;
+                filter: blur(100px);
+                opacity: 0.12; /* شفافية هادية جداً عشان تفضل فخمة ورسمية */
+                animation: floatOrb 10s infinite alternate ease-in-out;
+            }
+            .blob-1 {
+                width: 500px; height: 500px;
+                background: #047857; /* الأخضر الرسمي */
+                top: -150px; right: -100px;
+            }
+            .blob-2 {
+                width: 400px; height: 400px;
+                background: #2FA4D7; /* أزرق SNDRY */
+                bottom: -100px; left: -100px;
+                animation-delay: -3s;
+            }
+            .blob-3 {
+                width: 300px; height: 300px;
+                background: #CA8E0B; /* ذهبي SAMI */
+                top: 50%; left: 50%;
+                transform: translate(-50%, -50%);
+                animation-delay: -5s;
+            }
 
-        .logo-hero {
-            width: clamp(200px, 40vw, 500px);
-            filter: drop-shadow(0 30px 60px rgba(0,0,0,0.12));
-        }
+            @keyframes floatOrb {
+                0% { transform: translate(0, 0) scale(1); }
+                100% { transform: translate(40px, -40px) scale(1.1); }
+            }
 
-        .platform-img {
-            width: auto; 
-            /* تحجيم الصورة في الموبايل لتوفير مساحة للنص */
-            max-height: 30vh; 
-            object-fit: contain; border-radius: 24px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.15);
-        }
-        @media (min-width: 768px) {
-            .platform-img { max-height: 50vh; }
-        }
 
-        .phi-card {
-            background: rgba(255,255,255,0.6); backdrop-filter: blur(10px);
-            border-radius: 30px; border: 1px solid rgba(255,255,255,0.5);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.03);
-            /* بادينج مختلف للموبايل والديسكتوب */
-            padding: 1.5rem; 
-        }
-        @media (min-width: 768px) {
-            .phi-card { padding: 3rem 4rem; border-radius: 40px; }
-        }
+            /* تأثير ظهور زر البطاقة عند التمرير */
+            .card-btn-wrapper {
+                opacity: 0;
+                transform: translateY(15px);
+                transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .service-card:hover .card-btn-wrapper {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            /* أمان للموبايل: إظهار الزر دائماً لأن الموبايل لا يدعم الـ Hover */
+            @media (max-width: 768px) {
+                .card-btn-wrapper { opacity: 1; transform: translateY(0); }
+            }
 
-        .nav-btn {
-            /* حجم صغير للموبايل، كبير للديسكتوب */
-            width: 40px; height: 40px; border-radius: 50%;
-            background: rgba(255,255,255,0.8); backdrop-filter: blur(10px);
-            display: flex; align-items: center; justify-content: center;
-            font-size: 18px; border: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.3s ease; box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            cursor: pointer; z-index: 50;
-        }
-        @media (min-width: 768px) {
-            .nav-btn { width: 60px; height: 60px; font-size: 24px; }
-        }
-        .nav-btn:hover { background: #000; color: #fff; transform: scale(1.1); }
+            /* تنسيق المبادئ الاحترافي (Watermark & Glow) */
+            .phi-grid-card {
+                background: #ffffff;
+                padding: 2rem 1.5rem;
+                border-radius: 16px;
+                border: 1px solid #f3f4f6;
+                border-right: 4px solid #047857;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+                position: relative;
+                overflow: hidden;
+                transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+                z-index: 1;
+            }
+            .phi-grid-card::after {
+                content: '';
+                position: absolute;
+                top: 0; bottom: 0; right: 0; width: 0;
+                background: linear-gradient(to left, rgba(4,120,87,0.04), transparent);
+                z-index: -1;
+                transition: width 0.5s ease;
+            }
+            .phi-grid-card:hover {
+                transform: translateY(-8px) scale(1.02);
+                box-shadow: 0 20px 40px rgba(4,120,87,0.08);
+            }
+            .phi-grid-card:hover::after {
+                width: 100%;
+            }
+            /* الرقم المائي الخلفي للمبادئ */
+            .phi-number {
+                position: absolute;
+                top: -5px;
+                left: 15px; /* يظهر على اليسار كخلفية */
+                font-size: 5rem;
+                font-weight: 900;
+                color: rgba(0,0,0,0.03);
+                z-index: -1;
+                transition: color 0.5s ease, transform 0.5s ease;
+            }
+            .phi-grid-card:hover .phi-number {
+                color: rgba(4,120,87,0.08);
+                transform: scale(1.1) rotate(-5deg);
+            }
 
-        .dots-container {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 6px; z-index: 100;
-            background: rgba(255,255,255,0.5); backdrop-filter: blur(10px);
-            padding: 8px 16px; border-radius: 30px;
-        }
-        .dot {
-            width: 6px; height: 6px; border-radius: 50%; background: rgba(0,0,0,0.2);
-            cursor: pointer; transition: all 0.3s ease;
-        }
-        .dot.active { background: #000; width: 20px; border-radius: 10px; }
-        @media (min-width: 768px) {
-            .dots-container { bottom: 30px; gap: 8px; padding: 10px 20px; }
-            .dot { width: 8px; height: 8px; }
-            .dot.active { width: 24px; }
-        }
+               /* تنسيقات قسم الأسئلة الشائعة (ناجز ستايل) */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    opacity: 0;
+}
+.faq-answer.open {
+    max-height: 500px; /* رقم كبير يكفي أي إجابة */
+    opacity: 1;
+}
+.faq-icon {
+    transition: transform 0.3s ease;
+}
+.faq-icon.open {
+    transform: rotate(180deg);
+}
+.category-pill {
+    transition: all 0.2s ease;
+}
+.category-pill.active {
+    background-color: #047857; /* أخضر ناجز */
+    color: white;
+    border-color: #047857;
+}
     </style>
 </head>
 <body>
@@ -120,185 +219,495 @@
     <script type="text/babel">
         const { useState, useEffect } = React;
 
-        function App() {
-            // بنسحب اللغة من المتصفح لو موجودة، ولو مش موجودة بنخليها عربي
-            const [lang, setLang] = useState(() => {
-                return localStorage.getItem('sndry_lang') || 'ar';
-            });
+        function PortalApp() {
+            // حفظ السيشن للغة
+            const [lang, setLang] = useState(() => localStorage.getItem('sndry_lang') || 'ar');
+            const [activeCategory, setActiveCategory] = useState('all');
+            const [openFaq, setOpenFaq] = useState(null);
 
             useEffect(() => {
-    localStorage.setItem('sndry_lang', lang);
-    document.documentElement.lang = lang;
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-}, [lang]);
-            const [currentIndex, setCurrentIndex] = useState(0);
+                localStorage.setItem('sndry_lang', lang);
+                document.documentElement.lang = lang;
+                document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            }, [lang]);
 
-            // المحتوى الكامل بدون Flow، والـ POS في المقدمة
+            // المحتوى من ملفك القديم بالحرف وبنفس مسارات الصور!
             const content = {
                 ar: {
-                    dir: 'rtl', switch: 'English', policies: 'السياسات', privacy: 'الخصوصية',
-                    sections: [
-                        { id: 'hero', color: '#2FA4D7', title: 'أهلاً وسهلاً... بوابتنا لخدمتكم', desc: 'هذا الموقع هو بوابتنا لخدمتكم، وهذه أعمالنا اللي بنفتخر فيها: إحنا شركة سعودية، وعندنا فريق متخصص في القاهرة بيوفر دعم مباشر لعملائنا في مصر. هدفنا نبسط لك التقنية ونخليها أداة فعلية تنمي بها عملك.', img: '/sndry-logo-d.png', type: 'hero' },
-                        { id: 'erp', color: '#16A085', title: 'SNDRY ERP', img: '/logo_dark.png', type: 'product', link: 'https://erp.sndry.net', desc: 'نظام متكامل لإدارة الموارد والعمليات داخل الشركات. يتيح لك متابعة جميع أقسام عملك داخل المكتب وخارجه من مكان واحد، ويساعدك على تنظيم أعمالك وتطويرها بشكل احترافي.' },
-                        { id: 'pos', color: '#00BCD4', title: 'SNDRY POS', img: '/pos.png', type: 'product', link: 'https://pos.sndry.net', desc: 'نظام نقاط بيع ذكي صمم خصيصاً للسوق المصري. تم تطويره بواسطة فريقنا في القاهرة ليتناسب مع طبيعة التجارة والأعمال في مصر، مع دعم كامل للتعاملات المحلية والمتطلبات الخاصة بالسوق. (متوفر في مصر)' },
-                        { id: 'sami', color: '#E67E22', title: 'SAMI AI', img: '/sami-logo-dark.png', type: 'product', link: 'https://sami.sndry.net', desc: 'مساعدك التسويقي الذكي. صممناه عشان يساحبك في عالم التسويق الرقمي حتى لو ما عندك خلفية مسبقة فيه. يقدر ينشئ لك حملات إعلانية، يحللك المنافسين، يتابع الترندات، ويعمل جدولة تلقائية للمحتوى. كمان يكشف لك البوتات المزعجة.' },
-                        { id: 'phi1', color: '#27AE60', title: 'الالتزام بالاستقلال', type: 'phi', desc: 'نحن هنا لنصنع الفارق بشروطنا. لا تحكمنا مجالس إدارات تسعى للربح السريع، ولا مستثمرون يملون علينا خياراتنا. استقلاليتنا المطلقة تمنحنا الجرأة لنبتكر بشغف، ونجازف حيث يتراجع الآخرون، ولنبني لك أدوات تضع نجاحك أولاً.' },
-                        { id: 'phi2', color: '#8E44AD', title: 'الفرق الصغيرة', type: 'phi', desc: 'نؤمن بأن الإنجازات العظيمة لا تتطلب جيوشاً من الموظفين، بل عقولاً ذكية ومركزة. الفرق الصغيرة تتحرك بسرعة، تتخذ القرارات بمرونة، وتركز على ما يهم حقاً دون تعقيدات إدارية. الأقل غالباً ما يعني الأفضل.' },
-                        { id: 'phi3', color: '#00BCD4', title: 'نحن لا نبيع بياناتك', type: 'phi', desc: 'نموذج عملنا يعتمد كلياً على بيع منتجات تلبي تطلعاتك، وليس بيع خصوصيتك للآخرين. نحن نرفض بشكل قاطع المتاجرة بمعلومات عملائنا أو استغلالها لغايات إعلانية. نحن نبني أدوات احترافية، وأنت تدفع مقابل استخدامها.' },
-                        { id: 'phi4', color: '#CA8E0B', title: 'ملايين الشركات، لا حيتان السوق', type: 'phi', desc: 'تتصارع الشركات التقنية الكبرى للفوز بعقود "حيتان السوق" بمليارات الريالات. نحن نرى أن هذا المسار ممل. شغفنا الحقيقي ينصب على ملايين الشركات الصغيرة والمتوسطة في الوطن العربي. نحن هنا للوقوف بجانبهم.' },
-                        { id: 'phi5', color: '#D81B60', title: 'لا تستنسخ بيئة المكتب', type: 'phi', desc: 'العمل عن بُعد لا يعني أن تنقل روتين المكتب بكامل ملله إلى شاشتك. اعتمد التواصل غير المتزامن لتعطي فريقك مساحة للإبداع والتركيز. لا تحاول تقليد جدران المكتب وقيوده في العالم الرقمي.. بل تمرد عليها وابنِ ثقافة قائمة على الإنتاج.' },
-                        { id: 'phi6', color: '#16A085', title: 'الساعات ليست متساوية', type: 'phi', desc: 'الستون دقيقة المتواصلة تصنع إنجازاً مبهراً، بينما الساعة الممزقة إلى أجزاء تتخللها المقاطعات لا تصنع شيئاً. العمل المتواصل هو مفتاح الجودة والإبداع الحقيقي. نحن نحمي وقتنا بصرامة لضمان أعلى مستويات التركيز.' },
-                        { id: 'phi7', color: '#C0392B', title: 'فخ التكرار', type: 'phi', desc: 'أي مهمة تقوم بها يومياً وبنفس الطريقة المتكررة هي ببساطة إهدار لوقتك وموهبتك. الروتين الأعمى لا يصنع التقدم. نحن نؤمن بأن الذكاء يكمن في ابتكار حلول تغير النتائج وتمنحك وقتك وحريتك.' },
-                        { id: 'phi8', color: '#E67E22', title: 'الاجتماعات ليست مجانية', type: 'phi', desc: 'الاجتماع يجب أن يكون دائماً الملاذ الأخير. حشر خمسة أشخاص في غرفة لمدة ساعة يعني استنزاف خمس ساعات من وقت الفريق. لا نعقد الاجتماعات إلا عندما تكون حتمية وعائدها استثنائياً.' },
-                        { id: 'phi9', color: '#9B59B6', title: 'فخ التفكير الهامشي', type: 'phi', desc: 'التردد في الاستثمار بالأدوات الصحيحة هو أغلى تكلفة قد تدفعها. التفكير الهامشي يخدعك بالتوفير الوهمي، بينما يسرق كفاءتك كل يوم. نحن نستثمر بلا تردد في التقنيات التي تضاعف إنتاجيتنا.' },
-                        { id: 'phi10', color: '#C06C84', title: 'شركات صامدة، لا ناشئة', type: 'phi', desc: 'العالم مهووس بـ "الشركات الناشئة" التي تسعى للاحتراق السريع. نحن ننحاز للشركات "الصامدة" (Stayups) التي أثبتت قيمتها الحقيقية وبنت أساساً متيناً للاستدامة. فخورون بأن عام 2026 يمثل عامنا الرابع من الاستمرارية.' },
-                        { id: 'phi11', color: '#E84393', title: 'رؤية عالمية', type: 'phi', desc: 'عبر منصاتنا، تمتد طموحاتنا لتتخطى الحدود الجغرافية. نحن نبني منتجات بمعايير عالمية تنافس محلياً ودولياً. وجهة نظرنا بُنيت على وعي شامل يمنحنا فهماً أعمق لما يحتاجه السوق الفعلي، أينما كان.' },
-                        { id: 'phi12', color: '#AF7AC5', title: 'لعنة سوء التواصل', type: 'phi', desc: 'الشركات لا تعاني من نقص في التواصل، بل من التخمة في "سوء التواصل". كثرة الرسائل لا تصنع الوضوح بل تخلق ضجيجاً. نحن نضع ثقتنا في الفرق الصغيرة والتواصل المكتوب بوضوح قاطع.' },
-                        { id: 'phi13', color: '#FD79A8', title: 'فخ الـ "سهل"', type: 'phi', desc: 'كلمة "سهل" هي الكلمة التي يستخدمها البعض لتبسيط مهام الآخرين. نحن نحترم تعقيد كل دور ونمنح كل تفصيلة وزنها الحقيقي، لأن النجاح الاستثنائي لا يُبنى أبداً على تهميش جهود الآخرين.' },
-                        { id: 'phi14', color: '#00BCD4', title: 'الشركات ليست عائلات', type: 'phi', desc: 'الشركات العظيمة ليست عائلات بديلة، بل هي حليف وداعم قوي لعائلتك الحقيقية. نحن لا نسرق وقتك الشخصي، ولا نتوقع منك الرد في الإجازات. وقتك خارج العمل هو ملكك بالكامل.' },
-                        { id: 'phi15', color: '#006C35', title: 'رؤية 2030', type: 'phi', desc: 'نحن لا نبني برمجيات فقط؛ بل نبني مستقبلاً يليق بطموح المملكة العربية السعودية. نؤمن بشدة أن العبقرية السعودية قادرة على تصميم أنظمة ومنصات تتفوق على المعايير العالمية.' },
-                        { id: 'phi16', color: '#1A1A1A', title: 'حرفة رقمية', type: 'phi', desc: 'نحن لا نرى البرمجة مجرد أسطر من الأكواد، بل نتناولها كحرفة فنية تتطلب الدقة والإتقان. كل واجهة صُممت بعناية لتعكس أرقى معايير الجودة. البساطة الظاهرة تخفي خلفها تعقيداً هندسياً مدروساً بحب.' }
-                    ]
+                    dir: 'rtl',
+                    nav: { home: 'الرئيسية', policies: 'السياسات', privacy: 'الخصوصية', switch: 'English' },
+                    hero: { title: 'منصة SNDRY', subtitle: 'المنصة الموحدة للخدمات وحلول الأعمال الرقمية' },
+                    cards: [
+                        { id: 'pos', title: 'SNDRY POS', type: 'أعمال | قطاع التجزئة', desc: 'نظام نقاط بيع ذكي صمم خصيصاً للسوق المصري. تم تطويره بواسطة فريقنا في القاهرة ليتناسب مع طبيعة التجارة والأعمال في مصر.', btn: 'استكشف المنصة ←', active: true, link: 'https://pos.sndry.net', img: './pos.png' },
+                        { id: 'erp', title: 'SNDRY ERP', type: 'حكومة | إدارة الموارد', desc: 'نظام متكامل لإدارة الموارد والعمليات داخل الشركات. يتيح لك متابعة جميع أقسام عملك داخل المكتب وخارجه من مكان واحد.', active: false, link: 'https://erp.sndry.net', img: './logo_dark.png' },
+                        { id: 'sami', title: 'SAMI AI', type: 'أفراد | مساعد تسويق', desc: 'مساعدك التسويقي الذكي. صممناه عشان يصاحبك في عالم التسويق الرقمي ويحللك المنافسين ويتابع الترندات.', active: false, link: 'https://sami.sndry.net', img: './sami-logo-dark.png' }
+                    ],
+                    phiTitle: 'أبرز الخدمات الإلكترونية والمبادئ',
+                    philosophy: [
+                        { title: 'الالتزام بالاستقلال', desc: 'نحن هنا لنصنع الفارق بشروطنا. استقلاليتنا المطلقة تمنحنا الجرأة لنبتكر بشغف، ونجازف حيث يتراجع الآخرون.' },
+                        { title: 'الفرق الصغيرة', desc: 'نؤمن بأن الإنجازات العظيمة لا تتطلب جيوشاً من الموظفين، بل عقولاً ذكية ومركزة. الأقل غالباً ما يعني الأفضل.' },
+                        { title: 'نحن لا نبيع بياناتك', desc: 'نحن نرفض بشكل قاطع المتاجرة بمعلومات عملائنا أو استغلالها لغايات إعلانية. نحن نبني أدوات احترافية، وأنت تدفع مقابل استخدامها.' },
+                        { title: 'ملايين الشركات', desc: 'شغفنا الحقيقي ينصب على ملايين الشركات الصغيرة والمتوسطة في الوطن العربي. نحن هنا للوقوف بجانبهم.' },
+                        { title: 'لا تستنسخ بيئة المكتب', desc: 'العمل عن بُعد لا يعني أن تنقل روتين المكتب. اعتمد التواصل غير المتزامن لتعطي فريقك مساحة للإبداع والتركيز.' },
+                        { title: 'الساعات ليست متساوية', desc: 'الستون دقيقة المتواصلة تصنع إنجازاً مبهراً. العمل المتواصل هو مفتاح الجودة والإبداع الحقيقي.' },
+                        { title: 'فخ التكرار', desc: 'الروتين الأعمى لا يصنع التقدم. الذكاء يكمن في ابتكار حلول تغير النتائج وتمنحك وقتك وحريتك.' },
+                        { title: 'الاجتماعات ليست مجانية', desc: 'الاجتماع يجب أن يكون دائماً الملاذ الأخير. لا نعقد الاجتماعات إلا عندما تكون حتمية وعائدها استثنائياً.' },
+                        { title: 'فخ التفكير الهامشي', desc: 'التردد في الاستثمار بالأدوات الصحيحة هو أغلى تكلفة قد تدفعها. نحن نستثمر بلا تردد في التقنيات التي تضاعف إنتاجيتنا.' },
+                        { title: 'شركات صامدة', desc: 'نحن ننحاز للشركات الصامدة (Stayups) التي أثبتت قيمتها الحقيقية. فخورون بأن عام 2026 يمثل عامنا الرابع.' },
+                        { title: 'رؤية عالمية', desc: 'نحن نبني منتجات بمعايير عالمية تنافس محلياً ودولياً. وجهة نظرنا بُنيت على وعي شامل يمنحنا فهماً أعمق.' },
+                        { title: 'لعنة سوء التواصل', desc: 'الشركات تعاني من التخمة في "سوء التواصل". نحن نضع ثقتنا في الفرق الصغيرة والتواصل المكتوب بوضوح قاطع.' },
+                        { title: 'فخ الـ "سهل"', desc: 'نحن نحترم تعقيد كل دور ونمنح كل تفصيلة وزنها الحقيقي، لأن النجاح الاستثنائي لا يُبنى أبداً على تهميش الآخرين.' },
+                        { title: 'الشركات ليست عائلات', desc: 'الشركات العظيمة ليست عائلات بديلة، بل هي حليف لعائلتك. وقتك خارج العمل هو ملكك بالكامل.' },
+                        { title: 'رؤية 2030', desc: 'نحن لا نبني برمجيات فقط؛ بل نبني مستقبلاً يليق بطموح السعودية، نؤمن أن العبقرية السعودية تتفوق عالمياً.' },
+                        { title: 'حرفة رقمية', desc: 'نحن لا نرى البرمجة مجرد أكواد، بل حرفة فنية تتطلب الدقة. البساطة الظاهرة تخفي خلفها تعقيداً هندسياً.' }
+                    ],
+                    footer: {
+                                col1: 'عن المنصة',
+                                links1: ['حول SNDRY', 'الرؤية والرسالة', 'فريق العمل'],
+                                col2: 'روابط مهمة',
+                                links2: ['نظام SNDRY POS', 'نظام SNDRY ERP', 'مساعد SAMI AI'],
+                                col3: 'المساعدة والدعم',
+                                links3: ['الأسئلة الشائعة', 'تواصل معنا: info@sndry.net'],
+                                col4: 'تابعنا على وسائل التواصل',
+                                rights: 'جميع الحقوق محفوظة لدى مجموعة SNDRY © 2026',
+                                lastUpdate: 'آخر تحديث للموقع: مايو 2026',
+                                terms: 'الشروط والأحكام',
+                                privacy: 'سياسة الخصوصية'
+                            },
+                            faqs: {
+    title: 'كيف يمكننا مساعدتك؟',
+    desc: 'اعثر على إجابات للأسئلة الشائعة حول منصاتنا، خدماتنا، وسياساتنا.',
+    categories: [
+        { id: 'all', name: 'الكل' },
+        { id: 'pos', name: 'SNDRY POS' },
+        { id: 'erp', name: 'SNDRY ERP' },
+        { id: 'sami', name: 'SAMI AI' },
+        { id: 'general', name: 'أسئلة عامة' }
+    ],
+    items: [
+        { id: 1, cat: 'general', q: 'هل خدمات SNDRY متاحة خارج مصر؟', a: 'حالياً، فريقنا في القاهرة يقدم الدعم الكامل للسوق المصري، ولكن منصاتنا السحابية مصممة للعمل وخدمة الشركات في جميع أنحاء الوطن العربي.' },
+        { id: 2, cat: 'pos', q: 'هل يعمل نظام SNDRY POS في حال انقطاع الإنترنت؟', a: 'نعم بالتأكيد! النظام يدعم العمل في وضع عدم الاتصال (Offline)، ويقوم بمزامنة المبيعات والبيانات تلقائياً فور عودة الاتصال بالإنترنت لضمان عدم توقف عملك.' },
+        { id: 3, cat: 'pos', q: 'هل النظام متوافق مع منظومة الفاتورة الإلكترونية؟', a: 'نعم، نظامنا متوافق تماماً مع متطلبات مصلحة الضرائب ويدعم التكامل المباشر مع منظومة الفاتورة والإيصال الإلكتروني.' },
+        { id: 4, cat: 'erp', q: 'هل يمكنني ربط فروع شركتي المختلفة على نظام واحد؟', a: 'نعم، SNDRY ERP مصمم خصيصاً لربط الفروع المتعددة، وإدارة المخازن والحسابات والموارد البشرية مركزياً من لوحة تحكم واحدة.' },
+        { id: 5, cat: 'sami', q: 'كيف يحمي SAMI AI ميزانيتي الإعلانية؟', a: 'يقوم المساعد الذكي بتحليل الزيارات والضغطات الوهمية (Bots) وحظرها تلقائياً، مما يضمن توجيه ميزانيتك التسويقية للعملاء الحقيقيين فقط.' },
+        { id: 6, cat: 'general', q: 'كيف يمكنني التواصل مع الدعم الفني؟', a: 'نوفر دعماً فنياً مباشراً عبر الهاتف والواتساب، بالإضافة إلى نظام تذاكر مدمج داخل جميع منصاتنا لضمان حل أي مشكلة في أسرع وقت.' }
+    ]
+},
                 },
                 en: {
-                    dir: 'ltr', switch: 'عربي', policies: 'Policies', privacy: 'Privacy',
-                    sections: [
-                        { id: 'hero', color: '#ffffff', title: 'Welcome... Our Gateway to Serve You', desc: 'This site is our gateway to serving you, and these are the products we take pride in. We are a Saudi company with a specialized team in Cairo providing direct support to our clients in Egypt. Our goal is to simplify technology.', img: '/sndry-logo-d.png', type: 'hero' },
-                        { id: 'erp', color: '#16A085', title: 'SNDRY ERP', img: '/logo_dark.png', type: 'product', link: 'https://erp.sndry.net', desc: 'An integrated system for managing resources and operations within companies. It allows you to monitor all your company departments inside and outside the office from one place.' },
-                        { id: 'pos', color: '#DE3D3A', title: 'SNDRY POS', img: '/pos.png', type: 'product', link: 'https://pos.sndry.net', desc: 'A smart point-of-sale system designed specifically for the Egyptian market. Developed by our team in Cairo to align with the nature of trade and business in Egypt, with full support for local transactions.' },
-                        { id: 'sami', color: '#CA8E0B', title: 'SAMI AI', img: '/sami.png', type: 'product', link: 'https://sami.sndry.net', desc: 'Your intelligent marketing assistant. It generates campaigns, analyzes competitors, follows trends, schedules content, and detects annoying bots to protect your budget.' },
-                        { id: 'phi1', color: '#27AE60', title: 'Commitment to Independence', type: 'phi', desc: 'We make a difference on our own terms. No boards chasing quick wins, and no investors dictating our roadmap. Our absolute freedom gives us the audacity to build with passion and craft tools that truly prioritize your success.' },
-                        { id: 'phi2', color: '#8E44AD', title: 'Small Teams', type: 'phi', desc: 'Big impact doesn\'t require massive headcounts, but sharp and focused minds. Small teams move faster, pivot with agility, and zero in on what truly matters without bureaucratic friction. Less is often more effective.' },
-                        { id: 'phi3', color: '#00BCD4', title: 'We Don\'t Sell You', type: 'phi', desc: 'Our business model relies on selling products that meet your expectations, not selling your privacy to others. We fundamentally refuse to monetize our customers\' personal information or exploit it for advertising.' },
-                        { id: 'phi4', color: '#CA8E0B', title: 'Millions of Companies, Not Whales', type: 'phi', desc: 'Our true passion lies with the millions of small and medium-sized businesses and startups across the Arab world. They are the backbone of our economy. We are here to stand in their corner with world-class tools.' },
-                        { id: 'phi5', color: '#D81B60', title: 'Don\'t Clone the Office', type: 'phi', desc: 'Remote work shouldn\'t mean copying office routine onto your screen. Switch to asynchronous communication to give your team room for creativity and focus. Drop the obsession with constant surveillance.' },
-                        { id: 'phi6', color: '#16A085', title: 'Hours Are Not Equal', type: 'phi', desc: 'A continuous 60-minute stretch produces breathtaking results, while an hour fractured by interruptions produces nothing. We rigorously protect our time to guarantee maximum focus and high-quality creativity.' },
-                        { id: 'phi7', color: '#C0392B', title: 'The Trap of Repetition', type: 'phi', desc: 'Any task you perform daily in the same repetitive way is a waste of your time and talent. True intelligence lies in inventing solutions that change outcomes and grant you time and freedom.' },
-                        { id: 'phi8', color: '#E67E22', title: 'Meetings Are Not Free', type: 'phi', desc: 'Meetings should always be a last resort. Pulling five people into a room for an hour consumes five hours of team time. We only hold meetings when absolutely essential and when the return is exceptional.' },
-                        { id: 'phi9', color: '#9B59B6', title: 'Marginal Thinking Trap', type: 'phi', desc: 'Hesitating to invest in the right tools is the most expensive cost you will pay. Marginal thinking deceives you with fake savings while stealing your efficiency daily.' },
-                        { id: 'phi10', color: '#C06C84', title: 'Stayups, Not Startups', type: 'phi', desc: 'The world is obsessed with "startups" chasing quick burnouts. We champion "stayups" that have proven their value and built a solid foundation for sustainability. 2026 marks our fourth year of commitment.' },
-                        { id: 'phi11', color: '#E84393', title: 'Global Vision', type: 'phi', desc: 'Across our platforms, our ambitions extend beyond geographical borders. We build products with global standards that compete locally and internationally.' },
-                        { id: 'phi12', color: '#AF7AC5', title: 'The Curse of Miscommunication', type: 'phi', desc: 'Companies suffer from "miscommunication" surplus, not a communication lack. Too many messages create noise, not clarity. We trust small teams and relentlessly clear written communication.' },
-                        { id: 'phi13', color: '#FD79A8', title: 'The "Easy" Trap', type: 'phi', desc: '"Easy" is the word some use to oversimplify others\' tasks. We respect the complexity of every role and give every detail its true weight, because exceptional success is never built on marginalizing others.' },
-                        { id: 'phi14', color: '#00BCD4', title: 'Companies Are Not Families', type: 'phi', desc: 'Great companies are not substitute families; they are steadfast allies to your real family. We don\'t steal your personal time or expect responses during weekends.' },
-                        { id: 'phi15', color: '#006C35', title: 'Vision 2030', type: 'phi', desc: 'We don\'t just build software; we engineer a future matching Saudi Arabia\'s boundless ambition. We firmly believe Saudi ingenuity can design platforms that exceed global standards.' },
-                        { id: 'phi16', color: '#1A1A1A', title: 'Digital Craftsmanship', type: 'phi', desc: 'We don\'t see coding as just lines of text; it\'s a rigorous craft that demands precision. Every interface is meticulously designed to reflect the highest standards of quality.' }
-                    ]
+                    dir: 'ltr',
+                    nav: { home: 'Home', policies: 'Policies', privacy: 'Privacy', switch: 'عربي' },
+                    hero: { title: 'SNDRY Platform', subtitle: 'Unified Platform for Digital Services & Business Solutions' },
+                    cards: [
+                        { id: 'pos', title: 'SNDRY POS', type: 'Business | Retail', desc: 'A smart point-of-sale system designed specifically for the Egyptian market, with full support for local transactions.', btn: 'Explore Platform →', active: true, link: 'https://pos.sndry.net', img: './pos.png' },
+                        { id: 'erp', title: 'SNDRY ERP', type: 'Enterprise | Resources', desc: 'An integrated system for managing resources and operations within companies from one place.', active: false, link: 'https://erp.sndry.net', img: './logo_dark.png' },
+                        { id: 'sami', title: 'SAMI AI', type: 'Individuals | Marketing', desc: 'Your intelligent marketing assistant. It generates campaigns, analyzes competitors, and protects your budget.', active: false, link: 'https://sami.sndry.net', img: './sami-logo-dark.png' }
+                    ],
+                    phiTitle: 'Core E-Services & Principles',
+                    philosophy: [
+                        { title: 'Commitment to Independence', desc: 'Our absolute freedom gives us the audacity to build with passion and prioritize your success.' },
+                        { title: 'Small Teams', desc: 'Big impact requires sharp, focused minds. Less is often more effective without friction.' },
+                        { title: 'We Don\'t Sell You', desc: 'We fundamentally refuse to monetize our customers\' personal info or exploit it for ads.' },
+                        { title: 'Millions of Companies', desc: 'Our true passion lies with small and medium businesses across the Arab world.' },
+                        { title: 'Don\'t Clone the Office', desc: 'Switch to asynchronous communication to give your team room for creativity and focus.' },
+                        { title: 'Hours Are Not Equal', desc: 'A continuous 60-minute stretch produces breathtaking results. Focus is key.' },
+                        { title: 'The Trap of Repetition', desc: 'True intelligence lies in inventing solutions that change outcomes and grant you freedom.' },
+                        { title: 'Meetings Are Not Free', desc: 'Meetings should be a last resort. We only hold them when absolutely essential.' },
+                        { title: 'Marginal Thinking Trap', desc: 'Hesitating to invest in the right tools is the most expensive cost you will pay.' },
+                        { title: 'Stayups, Not Startups', desc: 'We champion "stayups" that have proven their value. 2026 marks our fourth year.' },
+                        { title: 'Global Vision', desc: 'We build products with global standards that compete locally and internationally.' },
+                        { title: 'Curse of Miscommunication', desc: 'Too many messages create noise. We trust relentlessly clear written communication.' },
+                        { title: 'The "Easy" Trap', desc: 'We respect the complexity of every role and give every detail its true weight.' },
+                        { title: 'Companies Are Not Families', desc: 'Great companies are allies to your real family. Your time outside work is yours.' },
+                        { title: 'Vision 2030', desc: 'We engineer a future matching Saudi Arabia\'s boundless ambition and digital growth.' },
+                        { title: 'Digital Craftsmanship', desc: 'Coding is a rigorous craft. Every interface reflects the highest standards of quality.' }
+                    ],
+                    footer: {
+                                col1: 'About Platform',
+                                links1: ['About SNDRY', 'Vision & Mission', 'Our Team'],
+                                col2: 'Important Links',
+                                links2: ['SNDRY POS System', 'SNDRY ERP System', 'SAMI AI Assistant'],
+                                col3: 'Help & Support',
+                                links3: ['FAQs', 'Contact: info@sndry.net'],
+                                col4: 'Follow Us',
+                                rights: 'All rights reserved to SNDRY GROUP © 2026',
+                                lastUpdate: 'Last updated: May 2026',
+                                terms: 'Terms & Conditions',
+                                privacy: 'Privacy Policy'
+                            },
+                            faqs: {
+    title: 'How can we help you?',
+    desc: 'Find answers to frequently asked questions about our platforms, services, and policies.',
+    categories: [
+        { id: 'all', name: 'All' },
+        { id: 'pos', name: 'SNDRY POS' },
+        { id: 'erp', name: 'SNDRY ERP' },
+        { id: 'sami', name: 'SAMI AI' },
+        { id: 'general', name: 'General' }
+    ],
+    items: [
+        { id: 1, cat: 'general', q: 'Are SNDRY services available outside Egypt?', a: 'Currently, our Cairo team provides full support for the Egyptian market, but our cloud platforms are designed to serve companies across the Arab world.' },
+        { id: 2, cat: 'pos', q: 'Does SNDRY POS work without internet?', a: 'Yes! The system supports Offline mode and automatically syncs sales and data once the internet connection is restored to ensure your business never stops.' },
+        { id: 3, cat: 'pos', q: 'Is the system compatible with e-invoicing?', a: 'Yes, our system is fully compatible with tax authority requirements and supports direct integration with the e-invoicing system.' },
+        { id: 4, cat: 'erp', q: 'Can I connect multiple branches on one system?', a: 'Yes, SNDRY ERP is specifically designed to connect multiple branches, managing inventory, accounts, and HR centrally from one dashboard.' },
+        { id: 5, cat: 'sami', q: 'How does SAMI AI protect my ad budget?', a: 'The smart assistant analyzes and blocks fake clicks and bots automatically, ensuring your marketing budget is directed only to real customers.' },
+        { id: 6, cat: 'general', q: 'How can I contact technical support?', a: 'We provide direct technical support via phone and WhatsApp, in addition to a built-in ticketing system within all our platforms.' }
+    ]
+},
                 }
             };
 
             const t = lang === 'ar' ? content.ar : content.en;
-            const slides = t.sections;
-            const currentSlide = slides[currentIndex];
-
-            // وظائف التنقل
-            const handleNext = () => setCurrentIndex((prev) => (prev + 1) % slides.length);
-            const handlePrev = () => setCurrentIndex((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-
-            // التنقل بالكيبورد
-            useEffect(() => {
-                const handleKeyDown = (e) => {
-                    if (e.key === 'ArrowRight') t.dir === 'rtl' ? handlePrev() : handleNext();
-                    if (e.key === 'ArrowLeft') t.dir === 'rtl' ? handleNext() : handlePrev();
-                };
-                window.addEventListener('keydown', handleKeyDown);
-                return () => window.removeEventListener('keydown', handleKeyDown);
-            }, [t.dir, slides.length]);
 
             return (
-                <div dir={t.dir} className="h-screen w-screen relative overflow-hidden transition-colors duration-1000" style={{ backgroundColor: currentSlide.color + '15' }}>
+                <div dir={t.dir} className="min-h-screen flex flex-col">
                     
-                    {/* الخلفية الملونة */}
-                    <div className="bg-canvas" style={{ background: `radial-gradient(circle at 50% 50%, ${currentSlide.color}, transparent)` }}></div>
-
-                    {/* الهيدر العائم */}
-                    <header className="fixed top-6 left-1/2 -translate-x-1/2 w-[92%] max-w-7xl px-8 py-4 flex justify-between items-center z-[200] bg-white/70 backdrop-blur-xl rounded-full border border-white/40 shadow-[0_10px_40px_0_rgba(0,0,0,0.05)]">
-                        <div className="flex items-center gap-8">
-                            <div className="logo-container relative group block">
-                                <img src="/sndry-logo-d.png" alt="SNDRY" className="h-8 md:h-10 w-auto relative" />
+                    {/* الهيدر زي ناجز */}
+                    <header className="bg-white shadow-sm h-16 md:h-20 sticky top-0 z-50">
+                        <div className="max-w-7xl mx-auto px-4 h-full flex justify-between items-center">
+                            
+                            <div className="flex items-center h-full gap-4 md:gap-8">
+                                <a href="#" className="flex-shrink-0 flex items-center">
+                                    <img src="./sndry-logo-d.png" alt="SNDRY" className="h-10 md:h-14 object-contain" />
+                                </a>
+                                
+                                <nav className="hidden md:flex h-full items-center text-sm">
+                                    <a href="#" className="nav-item active">{t.nav.home}</a>
+                                    <a href="policies.html" className="nav-item text-gray-600">{t.nav.policies}</a>
+                                    <a href="privacy.html" className="nav-item text-gray-600">{t.nav.privacy}</a>
+                                </nav>
                             </div>
-                            <nav className="flex items-center gap-3 md:gap-6">
-    <a href="policies.html" className="text-[9px] md:text-[11px] font-black uppercase tracking-widest text-gray-500 hover:text-black transition-all">{t.policies}</a>
-    <div className="w-1 h-1 bg-black/20 rounded-full hidden md:block"></div>
-    <a href="privacy.html" className="text-[9px] md:text-[11px] font-black uppercase tracking-widest text-gray-500 hover:text-black transition-all">{t.privacy}</a>
-</nav>
+
+                            <div className="flex items-center gap-2 md:gap-4">
+                                {/* روابط الموبايل */}
+                                <div className="flex md:hidden gap-3 text-[10px] font-bold text-gray-500">
+                                    <a href="policies.html">{t.nav.policies}</a>
+                                    <a href="privacy.html">{t.nav.privacy}</a>
+                                </div>
+
+                                <button 
+                                    onClick={() => setLang(lang === 'ar' ? 'en' : 'ar')}
+                                    className="text-xs md:text-sm font-bold text-gray-600 hover:text-[#047857] flex items-center gap-2 px-3 py-2 rounded-md hover:bg-gray-50 transition-colors"
+                                >
+                                    <svg className="w-4 h-4 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129"></path></svg>
+                                    {t.nav.switch}
+                                </button>
+                            </div>
                         </div>
-                        <button onClick={() => { setLang(lang === 'ar' ? 'en' : 'ar'); setCurrentIndex(0); }} className="px-6 py-2.5 rounded-full bg-black text-white text-[10px] font-black uppercase tracking-widest hover:scale-105 transition-transform shadow-xl">
-                            {t.switch}
-                        </button>
                     </header>
 
-                    {/* أزرار التنقل الجانبية */}
-                    <div className="fixed inset-y-0 left-0 w-24 flex items-center justify-center z-50">
-                        <button onClick={t.dir === 'rtl' ? handleNext : handlePrev} className="nav-btn">
-                            {t.dir === 'rtl' ? '←' : '←'}
-                        </button>
-                    </div>
-                    <div className="fixed inset-y-0 right-0 w-24 flex items-center justify-center z-50">
-                        <button onClick={t.dir === 'rtl' ? handlePrev : handleNext} className="nav-btn">
-                            {t.dir === 'rtl' ? '→' : '→'}
-                        </button>
+                    {/* الهيرو */}
+                    
+                <section className="relative pt-20 pb-40 md:pt-24 md:pb-48 bg-white overflow-hidden">
+                    
+                    {/* الكرات المضيئة المتحركة */}
+                    <div className="blobs-wrapper">
+                        <div className="blob blob-1"></div>
+                        <div className="blob blob-2"></div>
+                        <div className="blob blob-3"></div>
                     </div>
 
-                    {/* المحتوى الرئيسي (السلايد المعروض) */}
-                    <main key={currentIndex} className="slide-container animate-slide-up w-full h-full max-w-7xl mx-auto">
-                        <div className={`w-full grid ${currentSlide.type === 'phi' ? 'grid-cols-1' : 'md:grid-cols-2'} gap-12 md:gap-20 items-center`}>
-                            
-                            <div className={`space-y-6 md:space-y-8 ${currentSlide.type === 'phi' ? 'text-center max-w-4xl mx-auto phi-card' : ''}`}>
-                                {currentSlide.type === 'phi' && (
-                                    <div className="text-[10px] font-black tracking-[0.5em] text-gray-400 uppercase mb-4">Philosophy {currentIndex - 3} / 16</div>
-                                )}
-                                
-                                {currentSlide.type === 'hero' ? (
-                                    <h1 className="text-4xl md:text-7xl font-black leading-tight tracking-tighter text-black">{currentSlide.title}</h1>
-                                ) : (
-                                    <h2 className="text-3xl md:text-6xl font-black tracking-tighter" style={{ color: currentSlide.color }}>
-                                        {currentSlide.type === 'phi' ? `"${currentSlide.title}"` : currentSlide.title}
-                                    </h2>
-                                )}
-                                
-                                <p className="text-lg md:text-2xl text-gray-700 leading-relaxed font-medium">
-                                    {currentSlide.desc}
-                                </p>
-                                
-                                {currentSlide.link && (
-                                    <div className="pt-4">
-                                        <a href={currentSlide.link} target="_blank" className="inline-block bg-black text-white px-10 py-4 font-black text-xs uppercase tracking-widest hover:scale-105 transition-transform rounded-full shadow-xl">
-                                            {lang === 'ar' ? 'استكشف المنصة' : 'Explore Platform'}
-                                        </a>
+                    <div className="hero-pattern"></div>
+                    <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
+                        <h1 className="text-4xl md:text-6xl font-black text-gray-900 mb-6 tracking-tight">
+                            {t.hero.title}
+                        </h1>
+                        <p className="text-lg md:text-2xl text-gray-600 font-medium">
+                            {t.hero.subtitle}
+                        </p>
+                    </div>
+                </section>
+
+                    {/* الكروت المتداخلة */}
+                    <section className="max-w-6xl mx-auto px-4 -mt-24 md:-mt-32 relative z-20 mb-20">
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                            {t.cards.map((card, idx) => (
+                                <div key={idx} className={`service-card ${card.active ? 'active-card md:-mt-4 md:mb-4' : ''}`}>
+                                    <div>
+                                        <img 
+                                            src={card.img} 
+                                            alt={card.title} 
+                                            className="h-10 md:h-14 mx-auto mb-6 object-contain transition-transform duration-500 hover:scale-110"
+                                            onError={(e) => { e.target.style.display='none' }}
+                                        />
+                                        <div className="text-[10px] md:text-[11px] font-bold text-[#047857] mb-2 uppercase tracking-wider">{card.type}</div>
+                                        <h3 className="text-xl md:text-2xl font-black text-gray-900 mb-3">{card.title}</h3>
+                                        <p className="text-xs md:text-sm text-gray-500 leading-relaxed font-medium px-2">{card.desc}</p>
                                     </div>
-                                )}
-                            </div>
-
-                            {currentSlide.type !== 'phi' && (
-                                <div className="flex justify-center order-first md:order-last">
-                                    {currentSlide.type === 'hero' ? (
-                                        <img src={currentSlide.img} className="logo-hero" alt="SNDRY" />
-                                    ) : (
-                                        <img src={currentSlide.img} className="platform-img" alt={currentSlide.title} onError={(e) => { e.target.style.display='none' }} />
-                                    )}
+                                    
+                                    <div className="mt-8 card-btn-wrapper">
+                                        {card.active ? (
+                                            <a href={card.link} target="_blank" className="block w-full bg-[#047857] hover:bg-[#036046] text-white py-3 md:py-3.5 rounded-lg font-bold text-xs md:text-sm transition-colors shadow-md">
+                                                {card.btn}
+                                            </a>
+                                        ) : (
+                                            <a href={card.link} target="_blank" className="block w-full bg-gray-50 hover:bg-gray-100 text-gray-700 border border-gray-200 py-3 md:py-3.5 rounded-lg font-bold text-xs md:text-sm transition-colors">
+                                                {lang === 'ar' ? 'عرض التفاصيل' : 'View Details'}
+                                            </a>
+                                        )}
+                                    </div>
                                 </div>
-                            )}
-
+                            ))}
                         </div>
-                    </main>
+                    </section>
 
-                    {/* نقاط التنقل السفلية (Dots Pagination) */}
-                    <div className="dots-container">
-                        {slides.map((_, i) => (
-                            <div 
-                                key={i} 
-                                onClick={() => setCurrentIndex(i)}
-                                className={`dot ${i === currentIndex ? 'active' : ''}`}
-                                title={slides[i].title}
-                            ></div>
-                        ))}
+                    {/* المبادئ */}
+                    <section className="bg-gray-50 flex-grow pt-16 pb-20 md:pt-20 md:pb-24 border-t border-gray-200">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                            {t.philosophy.map((phi, idx) => {
+                                // إنشاء رقم بصيغة 01, 02, 03
+                                const num = (idx + 1).toString().padStart(2, '0');
+                                
+                                return (
+                                    <div key={idx} className="phi-grid-card">
+                                        <span className="phi-number">{num}</span>
+                                        <h4 className="font-bold text-gray-900 mb-3 text-base md:text-lg">{phi.title}</h4>
+                                        <p className="text-[11px] md:text-xs text-gray-500 leading-relaxed font-medium">{phi.desc}</p>
+                                    </div>
+                                );
+                            })}
+                        </div>
+                    </section>
+
+                    {/* قسم الأسئلة الشائعة (FAQ) - تصميم ناجز */}
+<section className="bg-white pt-20 pb-24">
+    <div className="max-w-7xl mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
+            
+            {/* العمود الأيمن (العنوان والتصنيفات) */}
+            <div className="lg:col-span-4 flex flex-col items-start lg:sticky lg:top-32 h-fit">
+                {/* أيقونة المحادثة الخضراء */}
+                <div className="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center text-[#047857] mb-6">
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path></svg>
+                </div>
+                
+                <h2 className="text-3xl font-black text-gray-900 mb-4">{t.faqs.title}</h2>
+                <p className="text-gray-500 text-sm font-medium leading-relaxed mb-8">
+                    {t.faqs.desc}
+                </p>
+
+                {/* أزرار الفلترة (التصنيفات) */}
+                <div className="flex flex-wrap gap-3">
+                    {t.faqs.categories.map((cat) => (
+                        <button 
+                            key={cat.id}
+                            onClick={() => { setActiveCategory(cat.id); setOpenFaq(null); }}
+                            className={`category-pill px-5 py-2.5 rounded-full text-xs font-bold border ${activeCategory === cat.id ? 'active' : 'bg-white text-[#047857] border-[#e5e7eb] hover:border-[#047857] hover:bg-green-50'}`}
+                        >
+                            {cat.name}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            {/* العمود الأيسر (قائمة الأسئلة) */}
+            <div className="lg:col-span-8">
+                <div className="border-t border-gray-100">
+                    {t.faqs.items
+                        .filter(item => activeCategory === 'all' || item.cat === activeCategory)
+                        .map((faq) => (
+                            <div key={faq.id} className="border-b border-gray-100">
+                                <button 
+                                    onClick={() => setOpenFaq(openFaq === faq.id ? null : faq.id)}
+                                    className="w-full py-6 flex justify-between items-center text-start focus:outline-none group"
+                                >
+                                    <span className={`text-base md:text-lg font-bold transition-colors ${openFaq === faq.id ? 'text-[#047857]' : 'text-gray-900 group-hover:text-[#047857]'}`}>
+                                        {faq.q}
+                                    </span>
+                                    <span className="flex-shrink-0 ml-4 rtl:mr-4 rtl:ml-0 text-gray-400 group-hover:text-[#047857]">
+                                        <svg className={`w-5 h-5 faq-icon ${openFaq === faq.id ? 'open' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                                    </span>
+                                </button>
+                                <div className={`faq-answer ${openFaq === faq.id ? 'open' : ''}`}>
+                                    <p className="pb-6 text-gray-600 text-sm md:text-base leading-relaxed font-medium pl-4 pr-12 rtl:pr-4 rtl:pl-12">
+                                        {faq.a}
+                                    </p>
+                                </div>
+                            </div>
+                    ))}
+                </div>
+                {/* رسالة في حالة عدم وجود أسئلة في القسم (للاحتياط) */}
+                {t.faqs.items.filter(item => activeCategory === 'all' || item.cat === activeCategory).length === 0 && (
+                    <div className="py-10 text-center text-gray-400 font-medium text-sm">
+                        {lang === 'ar' ? 'لا توجد أسئلة في هذا القسم حالياً.' : 'No questions in this category currently.'}
                     </div>
+                )}
+            </div>
+
+        </div>
+    </div>
+</section>
+
+                    {/* الفوتر */}
+                   {/* الفوتر المؤسسي (تصميم ناجز) */}
+ {/* الفوتر بستايل ناجز المضيء (Light Theme) */}
+<footer className="bg-[#f8f9fa] border-t border-gray-200 pt-16 pb-8 mt-32 relative z-10">
+    <div className="max-w-7xl mx-auto px-4 md:px-8 relative">
+        
+        {/* صندوق الدعوة لاتخاذ إجراء (CTA) - مرفوع لأعلى ليتداخل مع المحتوى */}
+        <div className="relative bg-white border border-gray-200 rounded-[2rem] p-8 md:p-12 text-center lg:text-start flex flex-col lg:flex-row items-center justify-between gap-8 shadow-[0_20px_50px_rgba(0,0,0,0.05)] transform -translate-y-32 mb-[-6rem] z-20">
+            <div className="max-w-2xl">
+                <h2 className="text-2xl md:text-4xl font-black text-gray-900 mb-4 leading-tight">
+                    {lang === 'ar' ? 'جاهز لتطوير أعمالك؟' : 'Ready to scale your business?'}
+                </h2>
+                <p className="text-gray-500 text-base md:text-lg font-medium">
+                    {lang === 'ar' ? 'انضم إلى آلاف الشركات التي تعتمد على أنظمتنا يومياً.' : 'Join thousands of companies relying on our systems daily.'}
+                </p>
+            </div>
+            <div className="flex-shrink-0">
+                <a href="https://erp.sndry.net" target="_blank" className="bg-[#047857] text-white px-8 py-4 rounded-xl text-sm md:text-lg font-black flex items-center gap-3 hover:bg-[#036046] hover:-translate-y-1 transition-all shadow-lg shadow-green-900/20">
+                    {lang === 'ar' ? 'اشترك الآن' : 'Subscribe Now'} 
+                    <svg className={`w-5 h-5 ${lang === 'ar' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                </a>
+            </div>
+        </div>
+
+        {/* شبكة الفوتر (4 أعمدة) */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-16">
+
+            {/* العمود الأول: تواصل معنا والسوشيال ميديا */}
+            <div>
+                <h3 className="text-gray-900 font-black text-sm md:text-base mb-6">{lang === 'ar' ? 'تواصل معنا' : 'Connect with us'}</h3>
+                <p className="text-gray-500 font-medium leading-relaxed mb-6 text-xs md:text-sm">
+                    {lang === 'ar' ? 'تابع أحدث أخبارنا وتحديثات منصاتنا عبر شبكات التواصل الاجتماعي.' : 'Follow our latest news and updates on social media.'}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                    <a href="https://www.linkedin.com/company/sndry/" target="_blank" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-[#047857] hover:border-[#047857] hover:text-white transition-all">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                    <a href="https://www.instagram.com/sndrygroup" target="_blank" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-[#047857] hover:border-[#047857] hover:text-white transition-all">
+                        <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.20 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                    </a>
+                    <a href="https://x.com/sndrygroup" target="_blank" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-[#047857] hover:border-[#047857] hover:text-white transition-all">
+                        <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z" /></svg>
+                    </a>
+                    <a href="https://www.tiktok.com/@sndrygroup" target="_blank" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-[#047857] hover:border-[#047857] hover:text-white transition-all">
+                        <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.17-2.89-.6-4.13-1.47V14.5c0 1.94-.52 3.88-1.64 5.38-1.15 1.54-2.88 2.58-4.78 2.91-1.93.33-4.04-.01-5.69-1.07-1.74-1.11-2.91-3.04-3.13-5.09-.22-2.12.5-4.29 1.96-5.85 1.48-1.58 3.65-2.45 5.79-2.34v4.04c-.99-.1-2.03.18-2.82.8-.75.61-1.17 1.58-1.13 2.55.02.99.49 1.94 1.3 2.5 1 .71 2.37.76 3.42.13.88-.53 1.41-1.52 1.41-2.54V0z" /></svg>
+                    </a>
+                    <a href="https://www.threads.com/@sndrygroup" target="_blank" className="w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center text-gray-500 hover:bg-[#047857] hover:border-[#047857] hover:text-white transition-all">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.92 7.94"></path></svg>
+                    </a>
+                </div>
+            </div>
+
+            {/* العمود الثاني: الروابط والسياسات */}
+            <div>
+                <h3 className="text-gray-900 font-black text-sm md:text-base mb-6">{lang === 'ar' ? 'روابط هامة' : 'Important Links'}</h3>
+                <ul className="space-y-4">
+                    <li>
+                        <a href="policies.html" className="text-gray-500 hover:text-[#047857] transition-colors font-medium text-sm flex items-center gap-2">
+                            <svg className={`w-3 h-3 ${lang === 'ar' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+                            {lang === 'ar' ? 'الشروط والسياسات' : 'Terms & Policies'}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="privacy.html" className="text-gray-500 hover:text-[#047857] transition-colors font-medium text-sm flex items-center gap-2">
+                            <svg className={`w-3 h-3 ${lang === 'ar' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path></svg>
+                            {lang === 'ar' ? 'سياسة الخصوصية' : 'Privacy Policy'}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="mailto:info@sndry.net" className="text-gray-500 hover:text-[#047857] transition-colors font-medium text-sm flex items-center gap-2 mt-4">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                            info@sndry.net
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            {/* العمود الثالث: منصات المنظومة (الثلاث منصات) */}
+            <div>
+                <h3 className="text-gray-900 font-black text-sm md:text-base mb-6">{lang === 'ar' ? 'منصات المنظومة' : 'Our Ecosystem'}</h3>
+                <div className="flex flex-col gap-3">
+                    
+                    {/* منصة ERP */}
+                    <a href="https://erp.sndry.net" target="_blank" className="group flex items-center gap-3 bg-white border border-gray-200 hover:border-[#047857] rounded-xl p-2.5 transition-all shadow-sm">
+                        <div className="w-10 h-10 rounded-lg bg-gray-50 p-1 flex items-center justify-center shrink-0">
+                            <img src="./logo_dark.png" alt="SNDRY ERP" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                        </div>
+                        <div>
+                            <h5 className="text-gray-900 font-bold text-xs group-hover:text-[#047857] transition-colors uppercase tracking-wider">SNDRY ERP</h5>
+                            <p className="text-gray-500 text-[10px]">{lang === 'ar' ? 'نظام إدارة الموارد' : 'Enterprise Resource Planning'}</p>
+                        </div>
+                    </a>
+
+                    {/* منصة POS */}
+                    <a href="https://pos.sndry.net" target="_blank" className="group flex items-center gap-3 bg-white border border-gray-200 hover:border-[#047857] rounded-xl p-2.5 transition-all shadow-sm">
+                        <div className="w-10 h-10 rounded-lg bg-gray-50 p-1 flex items-center justify-center shrink-0">
+                            <img src="./pos.png" alt="Sndry POS" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                        </div>
+                        <div>
+                            <h5 className="text-gray-900 font-bold text-xs group-hover:text-[#047857] transition-colors uppercase tracking-wider">SNDRY POS</h5>
+                            <p className="text-gray-500 text-[10px]">{lang === 'ar' ? 'نظام نقاط البيع' : 'Point of Sale System'}</p>
+                        </div>
+                    </a>
+
+                    {/* منصة SAMI */}
+                    <a href="https://sami.sndry.net" target="_blank" className="group flex items-center gap-3 bg-white border border-gray-200 hover:border-[#047857] rounded-xl p-2.5 transition-all shadow-sm">
+                        <div className="w-10 h-10 rounded-lg bg-gray-50 p-1 flex items-center justify-center shrink-0">
+                            <img src="./sami-logo-dark.png" alt="SAMI AI" className="w-full h-full object-contain" onError={(e) => { e.currentTarget.style.display = 'none'; }} />
+                        </div>
+                        <div>
+                            <h5 className="text-gray-900 font-bold text-xs group-hover:text-[#047857] transition-colors uppercase tracking-wider">SAMI AI</h5>
+                            <p className="text-gray-500 text-[10px]">{lang === 'ar' ? 'مساعدك التسويقي' : 'AI Marketing Assistant'}</p>
+                        </div>
+                    </a>
+
+                </div>
+            </div>
+
+            {/* العمود الرابع: التوافق والربط */}
+            <div>
+                <h3 className="text-gray-900 font-black text-sm md:text-base mb-6">{lang === 'ar' ? 'التوافق والربط' : 'Integrations'}</h3>
+                <div className="grid grid-cols-2 gap-3">
+                    <div className="bg-white rounded-xl p-2 flex items-center justify-center border border-gray-200 h-12 shadow-sm text-center">
+                        <span className="text-[10px] text-gray-700 font-bold leading-tight">مصلحة الضرائب المصرية</span>
+                    </div>
+                    <div className="bg-white rounded-xl p-2 flex items-center justify-center border border-gray-200 h-12 shadow-sm text-center">
+                        <span className="text-[10px] text-gray-700 font-bold leading-tight">ZATCA السعودية</span>
+                    </div>
+                    <div className="bg-white rounded-xl p-2 flex items-center justify-center border border-gray-200 h-12 shadow-sm text-center">
+                        <span className="text-[10px] text-gray-700 font-bold leading-tight">الهيئة الاتحادية للضرائب</span>
+                    </div>
+                    <div className="bg-white rounded-xl p-2 flex items-center justify-center border border-gray-200 h-12 shadow-sm text-center">
+                        <span className="text-[10px] text-gray-700 font-bold leading-tight">بوابة فاتورة</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        {/* شريط الحقوق السفلي */}
+        <div className="border-t border-gray-200 py-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+            
+            <div className="flex flex-col gap-3">
+                <p className="text-xs text-gray-500 font-medium">
+                    {lang === 'ar' ? 'جميع الحقوق محفوظة لمجموعة SNDRY © 2026' : 'All rights reserved to SNDRY GROUP © 2026'}
+                </p>
+                <div className="flex items-center gap-2 text-gray-400 text-[10px] font-medium mt-1">
+                    Made with <svg className="w-3 h-3 text-red-500 fill-red-500 animate-pulse" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> by SNDRY Tech
+                </div>
+            </div>
+
+            {/* رؤية 2030 ولوجو SNDRY - بستايل فاتح */}
+            <div className="flex items-center gap-6">
+                <div className={`text-left ${lang === 'ar' ? 'rtl:text-right' : ''}`} dir="ltr">
+                    <div className="text-[9px] text-gray-400 font-black uppercase tracking-widest mb-1">Aligned with</div>
+                    <div className="text-xl font-black text-gray-300 tracking-tighter hover:text-[#047857] transition-colors cursor-default">VISION 2030</div>
+                </div>
+                <div className="w-px h-10 bg-gray-200"></div>
+                <img src="./sndry-logo-d.png" alt="SNDRY" className="h-7 md:h-8 grayscale opacity-60 hover:grayscale-0 hover:opacity-100 transition-all cursor-pointer" />
+            </div>
+
+        </div>
+    </div>
+</footer>
 
                 </div>
             );
         }
-        ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+
+        ReactDOM.createRoot(document.getElementById('root')).render(<PortalApp />);
     </script>
 </body>
 </html>
